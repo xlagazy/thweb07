@@ -1,0 +1,54 @@
+@media screen and (max-width: 1024px) {
+    .contents{
+        padding:5% 0 20%;
+        margin-top:5%;
+    }
+
+    table{
+        font-size:1vw;
+    }
+
+    .signin{
+        width:60%; 
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+    }
+
+    .signin label{
+        font-size:3vw;
+    }
+
+    .signin .btn{
+        width:30%;
+    }
+
+    #signArea{
+        width:50%;
+        margin: 1% auto;
+    }
+
+    .sign-container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .sign-preview {
+        width: 150px;
+        height: 50px;
+        border: solid 1px #CFCFCF;
+        margin: 15% 5px;
+    }
+    .tag-ingo {
+        font-family: cursive;
+        font-size: 12px;
+        text-align: left;
+        font-style: oblique;
+    }
+    .center-text {
+        text-align: center;
+    }
+      
+    
+}
