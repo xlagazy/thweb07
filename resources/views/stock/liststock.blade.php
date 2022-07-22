@@ -5,6 +5,7 @@
 @section('contents')
 
     <div class="ct_listuser">
+        <h1></h1>
         <div>
             <a href="{{URL::to('liststock')}}" class="text-decoration-none text-dark">
                 <h1 style="margin-bottom:2%">Stock</h1>
