@@ -95,7 +95,7 @@
                                 <p>Receieved</p>
                             @elseif($notirepairs->status_noti_repair == 2)
                                 <p>No Receieved</p>
-                            @endif
+                            @endif  
                             <!-- <a href="" style="color:#ffc107" data-toggle="modal" data-target="#upmodal{{$notirepairs->noti_repair_no}}">
                             <i class="fa fa-pencil fa-lg"></i>
                             Update</a>

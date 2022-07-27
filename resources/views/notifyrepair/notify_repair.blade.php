@@ -29,23 +29,26 @@
 </head>
 <body style="background:white;">
 
+    <nav class="navbar navbar-dark" style="background-color:#1e72d2;color:#fff;height:10%;">
+        <p class="h3 mx-auto"> แจ้งซ่อมแผนก IT</p>
+    </nav>
+
     <!-- Get value to checktrack.js file -->
     <script>
 
     var noti_repair = <?php echo json_encode($noti_repair); ?>;
 
     </script>
-    <div style="padding:2% 2% 0 2%;">
+
+    <div style="padding:1% 1% 0 1%;" style="background-color:#c0ffd0;">
+
         <div class="row">
-            <div class="col d-flex justify-content-center">
-                <h2> แจ้งซ่อมแผนก IT</h2>
-            </div>
-        </div> 
-        <div class="row">
-            <div class="col-3">
+
+            <div class="col-3 border" style="padding-top:0.7%;">
                 <button type="button" class="btn btn-success btn-lg btn-block add" data-toggle="modal" data-target="#addmodal">แจ้งซ่อม</button>
                 <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#track" >ติดตามสถานะ</button>
             </div>
+
             <div class="col-9">
                 <!-- table list notify repair -->
                 <div class="table-responsive">

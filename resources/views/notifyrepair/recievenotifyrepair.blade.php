@@ -104,7 +104,7 @@
 
                             @include('notifyrepair.modal_update_notifyrepair');
                         </td>
-                        <td style="text-align:center;">
+                        <td>
                             <a href="" data-toggle="modal" data-target="#edtmodal{{$notirepairs->noti_repair_no}}">
                             <i class="fa fa-pencil-square-o fa-lg"></i>
                             Edit</a>

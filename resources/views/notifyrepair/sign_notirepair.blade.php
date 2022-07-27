@@ -25,24 +25,24 @@
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>" >
             <input type = "hidden" name = "noti_repair_no" id="noti_repair_no" value = "{{$notirepair[0]->noti_repair_no}}" >
 
-            <div class="row" style="text-align:center">
-                <div class="col">
+            <div class="row">
+                <div class="col" style="text-align:center;position:fixed;">
                     <label><b>Signature</b></label>
                     <br/>
                     <div class="panel-body center-text">
-
                         <div id="signArea" >
                             <h2 class="tag-ingo">Put signature below,</h2>
-                            <div class="sig sigWrapper" style="height:auto;">
+                            <div class="sig sigWrapper" style="height:auto;width:305px;">
                                 <div class="typed"></div>
                                 <canvas class="sign-pad noti-sign-size" id="sign-pad" ></canvas>
                             </div>
                         </div>
-
-                    <br><br>
-                    <button type="button" class="btn btn-secondary" onclick="window.history.go(-1); return false;" data-dismiss="modal">Close</button>
-                    <button id="clear" class="btn btn-danger">Clear Signature</button>
-                    <button class="btn btn-success edt" style="width:10%;">Save</button>
+                        <div>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.go(-1); return false;" data-dismiss="modal">Close</button>
+                            <button id="clear" class="btn btn-danger">Clear Signature</button>
+                            <button class="btn btn-success edt" style="width:10%;">Save</button>        
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -50,7 +50,7 @@
 
     <script type="text/javascript" src="{{asset('scripts/signnotirepair.js')}}"></script>
 
-     <!-- script dropdown menu -->
+    <!-- script dropdown menu -->
 
     <script type="text/javascript" src="{{ URL::asset('scripts/dropdown.js') }}"></script>
 
