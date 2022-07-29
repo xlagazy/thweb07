@@ -13,74 +13,13 @@
       </div>
 
       <div class="d-flex flex-row" style="margin-bottom:1%;">
-      
-         <form form action="{{URL::to('listequipment/search')}}" method="get" class="form-inline" style="margin-right:auto;">
-            <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>" >
-            <table>
-               <tr>
-                  <td>
-                     <!-- Button trigger modal -->
-                     <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#addmodal">
-                        เพิ่ม Equipment
-                     </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <div class="form-group mb-2">
-                        <input type="text" name="search" class="form-control" value="{{$search}}" placeholder="Search">
-                     </div>
-                  </td>
-                  <td>
-                     <div class="form-group mb-2">
-                        <select name="equip_type_name" class="form-control">
-                           <option selected value="">Equipment Type...</option>
-                           @foreach($equip_type as $equip_ties)
-                              @if($equip_type_name == $equip_ties->equip_type_name)
-                                 <option value="{{$equip_ties->equip_type_name}}" selected>{{$equip_ties->equip_type_name}}</option>
-                              @else
-                                 <option value="{{$equip_ties->equip_type_name}}">{{$equip_ties->equip_type_name}}</option>
-                              @endif
-                           @endforeach
-                        </select>
-                     </div>
-                  </td>
-                  <td>
-                     <div class="form-group mb-2">
-                        <select name="com_name" class="form-control">
-                           <option selected value="">Computer Type...</option>
-                           @foreach($com_type as $com_types)
-                              @if($com_name == $com_types->com_name)
-                                 <option value="{{$com_types->com_name}}" selected>{{$com_types->com_name}}</option>
-                              @else
-                                 <option value="{{$com_types->com_name}}">{{$com_types->com_name}}</option>
-                              @endif
-                           @endforeach
-                        </select>
-                     </div>
-                  </td>
-                  <td>
-                     <div class="form-group mb-2">
-                        <select name="sect_name" class="form-control">
-                           <option selected value="">Section...</option>
-                           @foreach($section as $sections)
-                              @if($sect_name == $sections->sect_name)
-                                 <option value="{{$sections->sect_name}}" selected>{{$sections->sect_name}}</option>
-                              @else
-                                 <option value="{{$sections->sect_name}}">{{$sections->sect_name}}</option>
-                              @endif
-                           @endforeach
-                        </select>
-                     </div>
-                  </td>
-                  <td>
-                     <input type="submit" value="ค้นหา" class="btn btn-primary mb-2" style="margin:0 2% 0 2%">
-                  </td>
-               </tr>
-            </table> 
-         </form>
 
-         <a href="" data-toggle="modal" data-target="#modalexportexcel"><img src="/images/icons/excel.png" style="width:40px;height:40px;"></a>
+         <!-- Button trigger modal -->
+         <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#addmodal">
+            เพิ่ม Equipment
+         </button>
+
+         <a href="" style="margin-left:auto" data-toggle="modal" data-target="#modalexportexcel"><img src="/images/icons/excel.png" style="width:40px;height:40px;"></a>
 
       </div>
 
@@ -89,27 +28,79 @@
       
       <!-- table list eqmuipment -->
       <div class="table-responsive">
-         <table id="table" class="table table-hover table-dark" style="font-size:0.8em;">
+         <table class="table table-hover table-bordered table-sm w-auto">
             @if(count($equipment) == 0)
                <caption style="text-align:center;border:1px solid;"><h4>Not found data</h4></caption>
             @endif
          <thead>
+            <form form action="{{URL::to('listequipment/search')}}" method="get" class="form-inline" id="form" style="margin-right:auto;">
+               <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>" >
                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">Equipment Number</th>
-                  <th scope="col">Equipment Name</th>
-                  <th scope="col">Fix Asset</th>
-                  <th scope="col">Equipment Type</th>
-                  <th scope="col">Computer Type</th>
-                  <th scope="col">Control Person</th>
-                  <th scope="col">Section</th>
-                  <th scope="col" style="text-align:center;">Location</th>
-                  <th scope="col" style="text-align:center;">Warranty</th>
-                  <th scope="col" style="text-align:center;">Status</th>
-                  <th scope="col" style="text-align:center;">QR Code</th>
-                  <th scope="col" >Edit</th>
-                  <th scope="col">Delete</th>
+                  <th scope="col" class="align-top">No</th>
+                  <th scope="col" class="align-top">Equipment Number</th>
+                  <th scope="col" class="align-top">Equipment Name</th>
+                  <th scope="col" class="align-top">Fix Asset</th>
+                  <th scope="col" class="align-top">Equipment Type</th>
+                  <th scope="col" class="align-top">Computer Type</th>
+                  <th scope="col" class="align-top">Control Person</th>
+                  <th scope="col" class="align-top">Section</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Location</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Warranty</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Status</th>
+                  <th scope="col" class="align-top" style="text-align:center;">QR Code</th>
+                  <th scope="col" class="align-top">Edit</th>
+                  <th scope="col" class="align-top">Delete</th>
                </tr>
+               <tr style="border-top: hidden;">
+                  <th></th>
+                  <th>
+                     <input type="text" name="search_equip_no" id="search_equip_no" value="{{$search_equip_no}}" size="10" placeholder="Search">
+                  </th>
+                  <th>
+                     <input type="text" name="search_equip_name" id="search_equip_name" value="{{$search_equip_name}}" placeholder="Search">
+                  </th>
+                  <th>
+                     <input type="text" name="search_fix_asset" id="search_fix_asset" value="{{$search_fix_asset}}" size="6" placeholder="Search">
+                  </th>
+                  <th>
+                     <select name="equip_type_name" style="height:30px;width:100px;" onchange="this.form.submit()">
+                        <option selected value="">Equipment Type...</option>
+                        @foreach($equip_type as $equip_ties)
+                           @if($equip_type_name == $equip_ties->equip_type_name)
+                              <option value="{{$equip_ties->equip_type_name}}" selected>{{$equip_ties->equip_type_name}}</option>
+                           @else
+                              <option value="{{$equip_ties->equip_type_name}}">{{$equip_ties->equip_type_name}}</option>
+                           @endif
+                        @endforeach
+                     </select>
+                  </th>
+                  <th>
+                     <select name="com_name" style="height:30px;width:100px;" onchange="this.form.submit()">
+                        <option selected value="">Computer Type...</option>
+                        @foreach($com_type as $com_types)
+                           @if($com_name == $com_types->com_name)
+                              <option value="{{$com_types->com_name}}" selected>{{$com_types->com_name}}</option>
+                           @else
+                              <option value="{{$com_types->com_name}}">{{$com_types->com_name}}</option>
+                           @endif
+                        @endforeach
+                     </select>
+                  </th>
+                  <th></th>
+                  <th>
+                     <select name="sect_name" style="height:30px;" onchange="this.form.submit()">
+                        <option selected value="">Section...</option>
+                        @foreach($section as $sections)
+                           @if($sect_name == $sections->sect_name)
+                              <option value="{{$sections->sect_name}}" selected>{{$sections->sect_name}}</option>
+                           @else
+                              <option value="{{$sections->sect_name}}">{{$sections->sect_name}}</option>
+                           @endif
+                        @endforeach
+                     </select>
+                  </th>
+               </tr>
+            </form>
          </thead>
          <tbody id="myTable">
 
@@ -184,6 +175,29 @@
       <script type="text/javascript" src="{{asset('scripts/deleteuser.js')}}"></script>
       <script type="text/javascript" src="{{asset('scripts/exportdata.js')}}"></script>
       <script type="text/javascript" src="{{asset('scripts/showdiv.js')}}"></script>
+      <!-- enter search -->
+      <script>
+         document.getElementById("search_equip_no").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+               event.preventDefault();
+               form.submit();
+            }
+         });
+
+         document.getElementById("search_equip_name").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+               event.preventDefault();
+               form.submit();
+            }
+         });
+
+         document.getElementById("search_fix_asset").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+               event.preventDefault();
+               form.submit();
+            }
+         });
+      </script>
 
    </div>
 

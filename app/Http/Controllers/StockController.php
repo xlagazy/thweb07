@@ -13,7 +13,8 @@ class StockController extends Controller
     function listStock(){
 
         //check null search
-        isset($_GET['search']) != '' ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_equip_number']) != '' ? $search_equip_number = $_GET['search_equip_number'] : $search_equip_number = "";
+        isset($_GET['search_equip_name']) != '' ? $search_equip_name = $_GET['search_equip_name'] : $search_equip_name = "";
         isset($_GET['com_name']) != '' ? $com_name = $_GET['com_name'] : $com_name = "";
         isset($_GET['status']) != '' ? $status = $_GET['status'] : $status = "";
 
@@ -35,14 +36,16 @@ class StockController extends Controller
                      ->paginate(10);
 
         return view('stock.liststock', ['stock' => $stock, 'equipment' => $equipment, 'st' => $st, 'stock_status' => $stock_status,
-                    'com_type' => $com_type, 'search' => $search, 'com_name' => $com_name, 'status' => $status]);
+                    'com_type' => $com_type, 'search_equip_number' => $search_equip_number, 'search_equip_name' => $search_equip_name,
+                    'com_name' => $com_name, 'status' => $status]);
 
     }
 
     function searchStock(){
 
         //check null search
-        isset($_GET['search']) != '' ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_equip_number']) != '' ? $search_equip_number = $_GET['search_equip_number'] : $search_equip_number = "";
+        isset($_GET['search_equip_name']) != '' ? $search_equip_name = $_GET['search_equip_name'] : $search_equip_name = "";
         isset($_GET['com_name']) != '' ? $com_name = $_GET['com_name'] : $com_name = "";
         isset($_GET['status']) != '' ? $status = $_GET['status'] : $status = "";
 
@@ -60,17 +63,16 @@ class StockController extends Controller
                               'com_type.com_name',
                               'stock.stock_status',
                               'stock_status.stock_status_name')
-                     ->where(function($query) use($search){
-                        $query->where('equipment.equipment_no', 'LIKE', '%'.$search.'%')
-                            ->orWhere('equipment.equipment_name', 'LIKE', '%'.$search.'%');
-                     })
+                     ->where('equipment.equipment_no', 'LIKE', '%'.$search_equip_number.'%')
+                     ->where('equipment.equipment_name', 'LIKE', '%'.$search_equip_name.'%')
                      ->where('com_type.com_name', 'LIKE', '%'.$com_name.'%')
                      ->where('stock.stock_status', 'LIKE', '%'.$status.'%')
                      ->orderBy('stock.stock_no', 'DESC')
                      ->paginate(10);
 
         return view('stock.liststock', ['stock' => $stock, 'equipment' => $equipment, 'st' => $st, 'stock_status' => $stock_status,
-                     'com_type' => $com_type, 'search' => $search, 'com_name' => $com_name, 'status' => $status]);
+                     'com_type' => $com_type, 'search_equip_number' => $search_equip_number, 'search_equip_name' => $search_equip_name,
+                     'com_name' => $com_name, 'status' => $status]);
 
     }
 

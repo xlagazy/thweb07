@@ -16,7 +16,9 @@ class EquipmentController extends Controller
     function listEquipment(){
 
         //check null search
-        isset($_GET['search']) != '' ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_equip_no']) != '' ? $search_equip_no = $_GET['search_equip_no'] : $search_equip_no = "";
+        isset($_GET['search_equip_name']) != '' ? $search_equip_name = $_GET['search_equip_name'] : $search_equip_name = "";
+        isset($_GET['search_fix_asset']) != '' ? $search_fix_asset = $_GET['search_fix_asset'] : $search_fix_asset = "";
         isset($_GET['equip_type_name']) != '' ? $equip_type_name = $_GET['equip_type_name'] : $equip_type_name = "";
         isset($_GET['com_name']) != '' ? $com_name = $_GET['com_name'] : $com_name = "";
         isset($_GET['sect_name']) != '' ? $sect_name = $_GET['sect_name'] : $sect_name = "";
@@ -76,15 +78,18 @@ class EquipmentController extends Controller
                 ->paginate(10);
 
         return view('equipment.listequipment', ['equip_type' => $equip_type, 'user' => $user, 'vendor' => $vendor, 
-                     'depart' => $depart, 'section' => $section, 'equipment' => $eq, 'os' => $os, 'com_type' => $com_type,
-                     'equip_type' => $equip_type, 'search' => $search, 'equip_type_name' => $equip_type_name, 
-                     'com_name' => $com_name, 'sect_name' => $sect_name]);
+                    'depart' => $depart, 'section' => $section, 'equipment' => $eq, 'os' => $os, 'com_type' => $com_type,
+                    'equip_type' => $equip_type, 'search_equip_no' => $search_equip_no, 'search_equip_name' => $search_equip_name,
+                    'search_fix_asset' => $search_fix_asset, 'equip_type_name' => $equip_type_name, 
+                    'com_name' => $com_name, 'sect_name' => $sect_name]);
     }
 
     function searchEquipment(){
 
         //check null search
-        isset($_GET['search']) != '' ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_equip_no']) != '' ? $search_equip_no = $_GET['search_equip_no'] : $search_equip_no = "";
+        isset($_GET['search_equip_name']) != '' ? $search_equip_name = $_GET['search_equip_name'] : $search_equip_name = "";
+        isset($_GET['search_fix_asset']) != '' ? $search_fix_asset = $_GET['search_fix_asset'] : $search_fix_asset = "";
         isset($_GET['equip_type_name']) != '' ? $equip_type_name = $_GET['equip_type_name'] : $equip_type_name = "";
         isset($_GET['com_name']) != '' ? $com_name = $_GET['com_name'] : $com_name = "";
         isset($_GET['sect_name']) != '' ? $sect_name = $_GET['sect_name'] : $sect_name = "";
@@ -139,10 +144,9 @@ class EquipmentController extends Controller
                          'equipment_type.equip_type_id',
                          'equipment_type.equip_type_name'
                 )
-                ->where(function($query) use ($search){
-                    $query->where('equipment.equipment_no', 'LIKE', '%'.$search.'%')
-                        ->orWhere('equipment.equipment_name', 'LIKE', '%'.$search.'%');
-                })
+                ->where('equipment.equipment_no', 'LIKE', '%'.$search_equip_no.'%')
+                ->where('equipment.equipment_name', 'LIKE', '%'.$search_equip_name.'%')
+                ->where('equipment.fix_asset', 'LIKE', '%'.$search_fix_asset.'%')
                 ->where('equipment_type.equip_type_name', 'LIKE', '%'.$equip_type_name.'%')
                 ->where('section.sect_name', 'LIKE', '%'.$sect_name.'%')
                 ->where('com_type.com_name', 'LIKE', '%'.$com_name.'%')
@@ -151,7 +155,8 @@ class EquipmentController extends Controller
 
         return view('equipment.listequipment', ['equip_type' => $equip_type, 'user' => $user, 'vendor' => $vendor, 
                      'depart' => $depart, 'section' => $section, 'equipment' => $eq, 'os' => $os, 'com_type' => $com_type,
-                    'search' => $search, 'equip_type_name' => $equip_type_name, 'com_name' => $com_name, 
+                     'search_equip_no' => $search_equip_no, 'search_equip_name' => $search_equip_name,
+                     'search_fix_asset' => $search_fix_asset, 'equip_type_name' => $equip_type_name, 'com_name' => $com_name, 
                     'sect_name' => $sect_name]);
     }
 
