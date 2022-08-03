@@ -14,11 +14,13 @@ class BorrowController extends Controller
     
     function listBorrow(){
 
-         //check null search
-         isset($_GET['search']) != '' ? $search = $_GET['search'] : $search = "";
-         isset($_GET['com_name']) != '' ? $com_name = $_GET['com_name'] : $com_name = "";
-         isset($_GET['sect_name']) != '' ? $sect_name = $_GET['sect_name'] : $sect_name = "";
-         isset($_GET['status']) != '' ? $status = $_GET['status'] : $status = "";
+        //check null search
+        isset($_GET['search_equip_number']) != '' ? $search_equip_number = $_GET['search_equip_number'] : $search_equip_number = "";
+        isset($_GET['search_equip_name']) != '' ? $search_equip_name = $_GET['search_equip_name'] : $search_equip_name = "";
+        isset($_GET['search_user_borrow']) != '' ? $search_user_borrow = $_GET['search_user_borrow'] : $search_user_borrow = "";
+        isset($_GET['com_name']) != '' ? $com_name = $_GET['com_name'] : $com_name = "";
+        isset($_GET['sect_name']) != '' ? $sect_name = $_GET['sect_name'] : $sect_name = "";
+        isset($_GET['status']) != '' ? $status = $_GET['status'] : $status = "";
 
         $sumstock = DB::select('select ct.com_name, count(stock_status) as summary  
                                 from stock st
@@ -57,14 +59,17 @@ class BorrowController extends Controller
                       ->paginate(10);
 
         return view('borrow.listborrow', ['stock' => $stock, 'borrow' => $borrow, 'section' => $section, 'sumstock' => $sumstock,
-                    'com_type' => $com_type,'search' => $search, 'com_name' => $com_name, 'sect_name' => $sect_name, 'status' => $status]); 
+                    'com_type' => $com_type,'search_equip_number' => $search_equip_number, 'search_equip_name' => $search_equip_name,
+                    'com_name' => $com_name, 'sect_name' => $sect_name, 'status' => $status, 'search_user_borrow' => $search_user_borrow]); 
 
     }
 
     function searchBorrow(){
 
         //check null search
-        isset($_GET['search']) != '' ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_equip_number']) != '' ? $search_equip_number = $_GET['search_equip_number'] : $search_equip_number = "";
+        isset($_GET['search_equip_name']) != '' ? $search_equip_name = $_GET['search_equip_name'] : $search_equip_name = "";
+        isset($_GET['search_user_borrow']) != '' ? $search_user_borrow = $_GET['search_user_borrow'] : $search_user_borrow = "";
         isset($_GET['com_name']) != '' ? $com_name = $_GET['com_name'] : $com_name = "";
         isset($_GET['sect_name']) != '' ? $sect_name = $_GET['sect_name'] : $sect_name = "";
         isset($_GET['status']) != '' ? $status = $_GET['status'] : $status = "";
@@ -101,11 +106,9 @@ class BorrowController extends Controller
                                'borrow_status.borrow_status_name',
                                'member.name',
                                'borrow.signature')
-                      ->where(function($query) use ($search){
-                              $query->where('equipment.equipment_no', 'LIKE', '%'.$search.'%')  
-                                    ->orWhere('equipment.equipment_name', 'LIKE', '%'.$search.'%')
-                                    ->orWhere('borrow.user_borrow', 'LIKE', '%'.$search.'%');
-                      })
+                      ->where('equipment.equipment_no', 'LIKE', '%'.$search_equip_number.'%')
+                      ->where('equipment.equipment_name', 'LIKE', '%'.$search_equip_name.'%')
+                      ->where('borrow.user_borrow', 'LIKE', '%'.$search_user_borrow.'%')
                       ->where('com_type.com_name', 'LIKE', '%'.$com_name.'%')
                       ->where('section.sect_name', 'LIKE', '%'.$sect_name.'%')
                       ->where('borrow_status.borrow_status_no', 'LIKE', '%'.$status.'%')
@@ -113,7 +116,8 @@ class BorrowController extends Controller
                       ->paginate(10);
 
         return view('borrow.listborrow', ['stock' => $stock, 'borrow' => $borrow, 'section' => $section, 'sumstock' => $sumstock,
-                    'com_type' => $com_type, 'search' => $search, 'com_name' => $com_name, 'sect_name' => $sect_name, 'status' => $status]);
+                    'com_type' => $com_type, 'search_equip_number' => $search_equip_number, 'search_equip_name' => $search_equip_name,
+                    'com_name' => $com_name, 'sect_name' => $sect_name, 'status' => $status, 'search_user_borrow' => $search_user_borrow]);
         
     }
 

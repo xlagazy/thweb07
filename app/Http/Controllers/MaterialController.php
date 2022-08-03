@@ -13,7 +13,8 @@ class MaterialController extends Controller
 {
     function listMaterial(){
         //check null search
-        isset($_GET['search']) ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_material_number']) ? $search_material_number = $_GET['search_material_number'] : $search_material_number = "";
+        isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
 
         $material = DB::table('material')
             ->join('member', 'member.user_id', '=', 'material.user_id')
@@ -24,12 +25,14 @@ class MaterialController extends Controller
             ->orderBy('material.no', 'DESC')
             ->paginate(10);
 
-        return view('material.listmaterial', ['material' => $material, 'search' => $search]);
+        return view('material.listmaterial', ['material' => $material, 'search_material_number' => $search_material_number,
+                    'search_material_name' => $search_material_name]);
     }
 
     function searchMaterial(){
         //check null search
-        isset($_GET['search']) ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_material_number']) ? $search_material_number = $_GET['search_material_number'] : $search_material_number = "";
+        isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
 
         $material = DB::table('material')
             ->join('member', 'member.user_id', '=', 'material.user_id')
@@ -37,12 +40,13 @@ class MaterialController extends Controller
                      'material.material_name',
                      'material.image',
                      'material.input_date')
-            ->where('material.material_no', 'LIKE', '%'.$search.'%')
-            ->orWhere('material.material_name', 'LIKE', '%'.$search.'%')
+            ->where('material.material_no', 'LIKE', '%'.$search_material_number.'%')
+            ->where('material.material_name', 'LIKE', '%'.$search_material_name.'%')
             ->orderBy('material.no', 'DESC')
             ->paginate(10);
 
-        return view('material.listmaterial', ['material' => $material, 'search' => $search]);
+        return view('material.listmaterial', ['material' => $material, 'search_material_number' => $search_material_number,
+                    'search_material_name' => $search_material_name]);
     }
 
     function materialnumber(){
@@ -165,7 +169,7 @@ class MaterialController extends Controller
     function listStockMaterial(){
 
         //check null search
-        isset($_GET['search']) ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
         isset($_GET['date']) ? $date = $_GET['date'] : $date = "";
 
         $stockmaterial = DB::table('stock_material')
@@ -180,7 +184,7 @@ class MaterialController extends Controller
 
         $material = DB::select('select material_no, material_name from material');
 
-        return view('material.liststockmaterial', ['stockmaterial' => $stockmaterial, 'material' => $material, 'search' => $search
+        return view('material.liststockmaterial', ['stockmaterial' => $stockmaterial, 'material' => $material, 'search_material_name' => $search_material_name
                     , 'date' => $date]);
         
     }
@@ -188,7 +192,7 @@ class MaterialController extends Controller
     function searchStockMaterial(){
         
         //check null search
-        isset($_GET['search']) ? $search = $_GET['search'] : $search = "";
+        isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
         isset($_GET['date']) ? $date = $_GET['date'] : $date = "";
 
         $stockmaterial = DB::table('stock_material')
@@ -198,14 +202,14 @@ class MaterialController extends Controller
                      'material.material_name',
                      'stock_material.stock_material_qty',
                      'stock_material.input_date')
-            ->where('material.material_name', 'LIKE', '%'.$search.'%')
-            ->Where('stock_material.input_date', 'LIKE', '%'.$date.'%')
+            ->where('material.material_name', 'LIKE', '%'.$search_material_name.'%')
+            ->where('stock_material.input_date', 'LIKE', '%'.$date.'%')
             ->orderBy('stock_material.stock_material_no', 'DESC')
             ->paginate(10);
 
         $material = DB::select('select material_no, material_name from material');
 
-        return view('material.liststockmaterial', ['stockmaterial' => $stockmaterial, 'material' => $material, 'search' => $search
+        return view('material.liststockmaterial', ['stockmaterial' => $stockmaterial, 'material' => $material, 'search_material_name' => $search_material_name
                     , 'date' => $date]);
         
     }

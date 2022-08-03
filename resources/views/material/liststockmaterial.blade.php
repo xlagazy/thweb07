@@ -11,45 +11,19 @@
       </div>
 
       <div class="d-flex flex-row" style="margin-bottom:1%;">
-         <form form action="{{URL::to('liststockmaterial/search')}}" method="get" class="form-inline" style="margin-right:auto;">
-            <div style="margin-right:auto;">
-               <table cellpadding="3">
-                  <tr>
-                     <td>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#addmodal">
-                           เพิ่ม Stock Material      
-                        </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <div class="form-group mb-2">
-                           <input type="text" name="search" class="form-control" value="{{$search}}" placeholder="Search">
-                        </div>
-                     </td>
-                     <td>
-                        <div class="form-group mb-2">
-                           <input type="date" name="date" value="{{$date}}" class="form-control">
-                        </div>
-                     </td>
-                     <td>
-                        <input type="submit" value="ค้นหา" class="btn btn-primary mb-2">
-                     </td>
-                  </tr>
-               </table> 
-            </div>
-         </form>
+         <!-- Button trigger modal -->
+         <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#addmodal">
+            เพิ่ม Stock Material      
+         </button>
    
          <!-- <a href="" data-toggle="modal" data-target="#modalexportexcel"><img src="/images/icons/excel.png" style="width:40px;height:40px;"></a> -->
-
       </div>
 
       <!-- Modal Export Excel -->
       
       <!-- table list eqmuipment -->
       <div class="table-responsive">
-         <table class="table table-hover table-dark table-sm" style="width:100%;">
+         <table class="table table-bordered table-sm">
             @if(count($stockmaterial) == 0)
                <caption style="text-align:center;border:1px solid;"><h4>Not found data</h4></caption>
             @endif
@@ -62,6 +36,21 @@
                   <th scope="col" >Edit</th>
                   <th scope="col">Delete</th>
                </tr>
+               <form action="{{URL::to('liststockmaterial/search')}}" method="get" class="form-inline" style="margin-right:auto;">
+                  <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>" >
+                  <tr style="border-top: hidden;">
+                     <th></th>
+                     <th>
+                        <input type="text" name="search_material_name" value="{{$search_material_name}}" placeholder="Search">
+                     </th>
+                     <th></th>
+                     <th>
+                        <input type="date" name="date" value="{{$date}}" onchange="this.form.submit()">
+                     </th>
+                     <th></th>
+                     <th></th>
+                  </tr>
+               </form>
          </thead>
          <tbody>
 

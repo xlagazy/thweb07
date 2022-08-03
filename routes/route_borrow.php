@@ -10,7 +10,7 @@ Route::post('editborrow', [BorrowController::class, 'editBorrow']);
 
 Route::get('deleteborrow/{id}&{st}&{no}', [BorrowController::class, 'deleteBorrow']);
 
-Route::get('searchborrow', [BorrowController::class, 'searchBorrow']);
+Route::get('listborrow/search', [BorrowController::class, 'searchBorrow']);
 
 Route::post('exportborrow', [BorrowController::class, 'exportBorrow']);
 

@@ -25,7 +25,9 @@
             เพิ่ม Stock
         </button>
 
-        <a href="" style="margin-left:auto" data-toggle="modal" data-target="#modalexportexcel"><img src="/images/icons/excel.png" style="width:40px;height:40px;"></a>
+        <a href="" style="margin-left:auto;" data-toggle="modal" data-target="#modalexportexcel">
+            <img src="/images/icons/excel.png" style="width:40px;height:40px;">
+        </a>
 
         </div>
 
@@ -68,7 +70,7 @@
                                 Status
                                 <br>
                                 <select name="status" style="height:30px;" onchange="this.form.submit()">
-                                <option selected value="">Status...</option>
+                                    <option selected value="">Status...</option>
                                     @if($status == 1)
                                         <option value="1" selected>Stock</option>
                                     @else
@@ -141,21 +143,20 @@
         <script type="text/javascript" src="{{asset('scripts/exportdata.js')}}"></script>
 
         <script>
-         document.getElementById("search_equip_number").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-               event.preventDefault();
-               form.submit();
-            }
-         });
+            document.getElementById("search_equip_number").addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    form.submit();
+                }
+            });
 
-         document.getElementById("search_equip_name").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-               event.preventDefault();
-               form.submit();
-            }
-         });
-
-      </script>
+            document.getElementById("search_equip_name").addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    form.submit();
+                }
+            });
+        </script>
 
         
     </div>

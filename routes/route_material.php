@@ -26,7 +26,6 @@ Route::get('listwithdrawmaterial', [MaterialController::class, 'listWithdrawMate
 
 Route::get('listwithdrawmaterial/search', [MaterialController::class, 'searchWithdrawMaterial']);
 
-
 Route::post('addwithdrawmaterial', [MaterialController::class, 'addWithdrawMatrial']);
 
 Route::post('editwithdrawmaterial', [MaterialController::class, 'editWithdrawMaterial']);
