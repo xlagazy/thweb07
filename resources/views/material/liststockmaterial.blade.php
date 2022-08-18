@@ -36,12 +36,12 @@
                   <th scope="col" >Edit</th>
                   <th scope="col">Delete</th>
                </tr>
-               <form action="{{URL::to('liststockmaterial/search')}}" method="get" class="form-inline" style="margin-right:auto;">
+               <form action="{{URL::to('liststockmaterial/search')}}" id="form" method="get" class="form-inline" style="margin-right:auto;">
                   <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>" >
                   <tr style="border-top: hidden;">
                      <th></th>
                      <th>
-                        <input type="text" name="search_material_name" value="{{$search_material_name}}" placeholder="Search">
+                        <input type="text" name="search_material_name" id="search_material_name" value="{{$search_material_name}}" placeholder="Search">
                      </th>
                      <th></th>
                      <th>
@@ -96,6 +96,15 @@
       <script type="text/javascript" src="{{asset('scripts/edituser.js')}}"></script>
       <script type="text/javascript" src="{{asset('scripts/deleteuser.js')}}"></script>
       <script type="text/javascript" src="{{asset('scripts/exportdata.js')}}"></script>
+
+      <script>
+         document.getElementById("search_material_name").addEventListener("keypress", function(event) {
+               if (event.key === "Enter") {
+                  event.preventDefault();
+                  form.submit();
+               }
+         });
+      </script>
 
    </div>
 

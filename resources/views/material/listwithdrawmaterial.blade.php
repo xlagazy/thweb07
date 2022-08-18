@@ -20,59 +20,48 @@
       </script>
 
       <div class="d-flex flex-row" style="margin-bottom:1%;">
-         <form form action="{{URL::to('listwithdrawmaterial/search')}}" method="get" class="form-inline" style="margin-right:auto;">
-            <div style="margin-right:auto;">
-               <table>
-                  <tr>
-                     <td>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#addmodal">
-                           เบิก Material      
-                        </button>
+         <!-- Button trigger modal -->
+         <button type="button" class="btn btn-success mb-2" data-toggle="modal" data-target="#addmodal">
+            เบิก Material      
+         </button>
 
-                        <!-- Button trigger modal sum stock -->
-                        <button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#modalsumstock">
-                              Stock
-                        </button>
+         <!-- Button trigger modal sum stock -->
+         <button type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#modalsumstock" style="margin-left:0.5%;">
+               Stock
+         </button>
 
-                        @include('material.modal_sum_material')
-                     </td>
-                  </tr>
-                  <tr>
-                        <td>
-                           <div class="form-group mb-2">
-                              <input type="text" name="search" class="form-control" value="{{$search}}" placeholder="Search">
-                           </div>
-                        </td>
-                        <td>
-                           <div class="form-group mb-2">
-                              <input type="date" name="date" value="{{$date}}" class="form-control">
-                           </div>
-                        </td>
-                        <td>
-                           <input type="submit" value="ค้นหา" class="btn btn-primary mb-2">
-                        </td>
-                     </tr>
-               </table> 
-            </div>
-         </form>
+         @include('material.modal_sum_material')
       </div>
       
       <!-- table list eqmuipment -->
       <div class="table-responsive">
-         <table class="table table-hover table-dark table-sm" id="withdrawtable" style="width:100%;">
+         <table class="table table-bordered table-sm">
             @if(count($withdrawmaterial) == 0)
                <caption style="text-align:center;border:1px solid;"><h4>Not found data</h4></caption>
             @endif
          <thead>
                <tr>
-                  <th scope="col" style="text-align:center;">No</th>
-                  <th scope="col" style="text-align:center;">Material Name</th>
-                  <th scope="col" style="text-align:center;">Withdraw QTY</th>
-                  <th scope="col" style="text-align:center;">Remark</th>
-                  <th scope="col" style="text-align:center;">Output Date</th>
-                  <th scope="col" style="text-align:center;">Details</th>
+                  <th scope="col" class="align-top" style="text-align:center;">No</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Material Name</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Withdraw QTY</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Remark</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Output Date</th>
+                  <th scope="col" class="align-top" style="text-align:center;">Details</th>
                </tr>
+               <form action="{{URL::to('listwithdrawmaterial/search')}}" method="get" id="form" class="form-inline" style="margin-right:auto;">
+                  <tr style="border-top: hidden;">
+                     <th></th>
+                     <th style="text-align:center;">
+                        <input type="text" name="search_material_name" value="{{$search_material_name}}" placeholder="Search" style="width:100%;">
+                     </th>
+                     <th></th>
+                     <th></th>
+                     <th style="text-align:center;">
+                        <input type="date" name="date" value="{{$date}}" onchange="this.form.submit()" style="width:100%;">
+                     </th>
+                     <th></th>
+                  </tr> 
+               </form>
          </thead>
          <tbody>
 
@@ -107,7 +96,16 @@
       <!-- Modal add -->
       @include('material.modal_add_withdraw_material')
 
-      <script type="text/javascript" src="{{asset('scripts/withdrawmaterial.js')}}"></script>        
+      <script type="text/javascript" src="{{asset('scripts/withdrawmaterial.js')}}"></script>      
+      
+      <script>
+         document.getElementById("search_material_name").addEventListener("keypress", function(event) {
+               if (event.key === "Enter") {
+                  event.preventDefault();
+                  form.submit();
+               }
+         });
+      </script>
 
    </div>
 

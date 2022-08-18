@@ -24,6 +24,12 @@ class UserController extends Controller
                                 where st.stock_status = 1
                                 group by ct.com_name
                                 ');
+
+        $sumstockmaterial = DB::select('select sm.material_no, mt.material_name, sum(sm.stock_material_qty) sumstockqty from stock_material sm
+                                inner join material mt
+                                on sm.material_no = mt.material_no 
+                                group by material_no');
+                                
         $borrow = DB::table('borrow')
                     ->join('section' ,'borrow.sect_id', '=', 'section.sect_id')
                     ->join('member', 'borrow.charge', '=', 'member.user_id')
@@ -47,7 +53,7 @@ class UserController extends Controller
                     ->orderBy('borrow.borrow_no', 'DESC')
                     ->paginate(5);
 
-        return view('home.home', ['sumequip' => $sumequip, 'sumstock' => $sumstock, 'borrow' => $borrow]);
+        return view('home.home', ['sumequip' => $sumequip, 'sumstock' => $sumstock, 'sumstockmaterial' => $sumstockmaterial, 'borrow' => $borrow]);
 
     }
 

@@ -10,7 +10,7 @@
 </div>
 
 <script>
-        var URLs = ["http://thweb05/prtg/index.html", "http://thweb07/organization"];
+        var URLs = ["http://thweb07/organization", "https://corp.csloxinfo.com/graph_zoom.php?CustomerID=09635&CustomerName=Nisshinbo%20Micro%20Devices%20(Thailand)%20Co.,Ltd.&type=Daily&Speed=100000.0&iframe=true&width=100%&height=100%"];
         var currURL = 0;
 
         function cycle() {

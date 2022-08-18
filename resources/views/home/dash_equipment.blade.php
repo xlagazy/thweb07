@@ -34,6 +34,7 @@
                     title: 'Summary amount equipment'},
                 bar: {groupWidth: '80%'},
                 hAxis: {
+                    textPosition : 'in',
                     textStyle:{
                         fontSize:9,
                         fontName:'Arial',

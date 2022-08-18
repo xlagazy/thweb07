@@ -5,16 +5,26 @@
 @section('contents')
    <div class="dash">
 
-   <div class="row">
-      <div class="col-6">
-         @include('home.dash_equipment')
+      <div class="row">
+         <div class="col-6">
+            @include('home.dash_equipment')
+         </div>
+
+         <div class="col-6">
+            @include('home.dash_stock')
+         </div>
       </div>
 
-      <div class="col-6">
-         @include('home.dash_stock')
+      <div class="row">
+         <div class="col-6">
+            @include('home.dash_stock_material')
+         </div>
+
+         <div class="col-6">
+         </div>
       </div>
+
+      @include('home.dash_borrow')                          
+
    </div>
-
-   @include('home.dash_borrow')
-
 @endsection

@@ -184,8 +184,8 @@ class MaterialController extends Controller
 
         $material = DB::select('select material_no, material_name from material');
 
-        return view('material.liststockmaterial', ['stockmaterial' => $stockmaterial, 'material' => $material, 'search_material_name' => $search_material_name
-                    , 'date' => $date]);
+        return view('material.liststockmaterial', ['stockmaterial' => $stockmaterial, 'material' => $material, 'search_material_name' => $search_material_name, 
+                    'date' => $date]);
         
     }
 
@@ -243,7 +243,8 @@ class MaterialController extends Controller
     
     function listWithdrawMaterial(){
         //check null search
-        isset($_GET['search']) ? $search = $_GET['search'] : $search = "";
+        //check null search
+        isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
         isset($_GET['date']) ? $date = $_GET['date'] : $date = "";
 
         $withdrawmaterial = DB::table('withdraw_material')
@@ -268,12 +269,13 @@ class MaterialController extends Controller
                                      group by material_no');
                                 
         return view('material.listwithdrawmaterial', ['withdrawmaterial' => $withdrawmaterial, 'material' => $material, 'stockmaterial' => $stockmaterial,
-                    'search' => $search, 'date' => $date]);
+                    'search_material_name' => $search_material_name, 'date' => $date]);
     }
 
     function searchWithdrawMaterial(){
         //check null search
-        isset($_GET['search']) ? $search = $_GET['search'] : $search = "";
+        //check null search
+        isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
         isset($_GET['date']) ? $date = $_GET['date'] : $date = "";
         
         $withdrawmaterial = DB::table('withdraw_material')
@@ -286,7 +288,7 @@ class MaterialController extends Controller
                                          'withdraw_material.out_date',
                                          'withdraw_material.user_id',
                                          'withdraw_material.remark')
-                                ->where('material.material_name', 'LIKE', '%'.$search.'%')
+                                ->where('material.material_name', 'LIKE', '%'.$search_material_name.'%')
                                 ->where('withdraw_material.out_date', 'LIKE', '%'.$date.'%')
                                 ->orderBy('withdraw_material.withdraw_material_no', 'DESC')
                                 ->groupBy('withdraw_material_detail.withdraw_material_no')
@@ -300,7 +302,7 @@ class MaterialController extends Controller
                                      group by material_no');
                                 
         return view('material.listwithdrawmaterial', ['withdrawmaterial' => $withdrawmaterial, 'material' => $material, 'stockmaterial' => $stockmaterial,
-                    'search' => $search, 'date' => $date]);
+                    'search_material_name' => $search_material_name, 'date' => $date]);
     }
     
     function listDetailWithdrawMaterial($id){

@@ -222,7 +222,7 @@ class EquipmentController extends Controller
     function equipnumber($equip_type){
         
         if($equip_type == 2){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THPRT%" order by no desc limit 1');
+            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THPRT%" order by equipment_no desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THPRT" . "1";
@@ -234,7 +234,7 @@ class EquipmentController extends Controller
         }
 
         if($equip_type == 3){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THNET%" order by no desc limit 1');
+            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THNET%" order by equipment_no desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THNET" . "1";
@@ -246,7 +246,7 @@ class EquipmentController extends Controller
         }
 
         if($equip_type == 4){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THUPS%" order by no desc limit 1');
+            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THUPS%" order by equipment_no desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THUPS" . "1";
@@ -258,7 +258,7 @@ class EquipmentController extends Controller
         }
 
         if($equip_type == 5){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THAIR%" order by no desc limit 1');
+            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THAIR%" order by equipment_no desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THAIR" . "1";
@@ -270,7 +270,7 @@ class EquipmentController extends Controller
         }
 
         if($equip_type == 6){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THEQP%" order by no desc limit 1');
+            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THEQP%" order by equipment_no desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THEQP" . "1";
