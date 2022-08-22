@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
     });
 //
 
+//monitors
+Route::get('/network-monitor', function(){
+    return view('monitors.network_monitor');
+});
+
 //error ie
 Route::get('/errorie', function(){
     return view('error_ie');

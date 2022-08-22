@@ -8,6 +8,7 @@
     <!-- Styles -->
     <link type="text/css" rel="stylesheet" href="/styles.css">
     <link type="text/css" rel="stylesheet" href="/stylesipad.css">
+    <link type="text/css" rel="stylesheet" href="/showmonitor.css" />
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
@@ -18,23 +19,24 @@
     <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
         
 </head>
-<body>
+<body id="bd_organize">
 <div style="padding:15px 15px 0; background-color: #fff;">
 <div class="ct_organize">
         <div class="row">
             <div class="col">
-                <img src="images/icons/itorganize.png" style="width:60%">
-                <h3 style="margin-top:2%;">วันที่ {{date('d-M-Y')}}</h3>
+                <img src="images/icons/itorganize.png" style="width:30%">
+                <h4 style="margin-top:2%;">วันที่ {{date('d-M-Y')}}</h4>
             </div>
             <div class="col">
             </div>
-            <div class="col" style="text-align:right;margin-right:5%;">
-                <img src="images/icons/5s.png" style="width:40%">
+            <div class="col" style="text-align:right;margin-right:2%;">
+                <img src="images/icons/5s.png" style="width:25%">
+                <!-- <img src="/images/icons/board_charge.png" width="200px" height="100px"></img>-->
             </div>
         </div>
 
         @if(!empty($member))
-            <div class="row justify-content-center" style="margin-bottom:1%">
+            <div class="row justify-content-center" style="margin-bottom:0.5%">
                 <div class="col-1.5">
                     <h2 style="text-shadow: 2px 2px 5px red;">Manager</h2>
                 </div>
@@ -90,28 +92,18 @@
             </div>
         @endif
 
-        @if(!empty($member))
-            <div class="row" style="margin-bottom:2%">
-                <div class="col-6 col-md-4">
-                    <h2 style="text-shadow: 2px 2px 5px red;">Developer 1</h2>
-                </div>
-                <div class="col-6 col-md-4">
-                    <h2 style="text-shadow: 2px 2px 5px red;">Developer 2</h2>
-                </div>
-                <div class="col-6 col-md-4">
-                    <h2 style="text-shadow: 2px 2px 5px red;">Application</h2>
-                </div>
-            </div>
-        @endif    
+        @if(!empty($member))  
 
         <!-- Developer 1 -->
 
         <div class="row" style="padding-left:2%;">
             <div class="col" style="padding-left:2%;">
+                <div class="row justify-content-center" style="margin-bottom:1%;">
+                    <h2 style="text-shadow: 2px 2px 5px red;">Developer 1</h2>
+                </div>
                 <div class="row">
 
                     <!-- Chief -->
-
                     @foreach($member as $members)
                         @if($members->sub_it_name == "Developer 1" && $members->position_name == "Chief")
                         <div class="carduser">
@@ -191,6 +183,9 @@
             <!-- Developer 2 -->
 
             <div class="col" style="padding-left:2%;">  
+                <div class="row justify-content-center">
+                    <h2 style="text-shadow: 2px 2px 5px red;" style="margin-bottom:1%;">Developer 2</h2>
+                </div>
                 <div class="row">
 
                     <!-- Chief -->
@@ -274,6 +269,9 @@
             <!-- Application -->
 
             <div class="col" style="padding-left:2%;">
+                <div class="row justify-content-center" style="margin-bottom:1%;">
+                    <h2 style="text-shadow: 2px 2px 5px red;">Application</h2>
+                </div>
                 <div class="row"> 
                     
                     <!-- Chief -->
@@ -355,8 +353,11 @@
             </div>
         </div>
 
-        <div class="row" style="margin-left:2%">
-            <label><b>ผู้ดูแล : Ms.C.Naphattha</b></label>
+        @endif 
+
+        <div class="row float-right" style="margin-right:2%">
+            <img src="/images/icons/board_charge.png" width="200px" height="100px"></img>
+            <!-- <label><b>ผู้ดูแล : Ms.C.Naphattha</b></label> -->
         </div>
     </div>
 </div>
