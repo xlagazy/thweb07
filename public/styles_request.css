@@ -1,0 +1,301 @@
+.signin{
+  width:25%; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+}
+
+.head-text{
+    font-size:18px;
+    margin:0 0 0 5%;
+}
+
+.contents{
+    height: 100%;
+    background-color: #fff;
+    margin:0 2% 2% 2%;
+    padding: 1% 2% 1% 2%;
+}
+
+.sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 2%;
+    background-color: #fff;
+}
+
+.sidenav a, .dropdown-btn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .dropdown-btn:hover {
+    color: #000;
+    background-color: #00000050;
+    text-decoration: none;;
+}
+
+.sidenav .clsnav{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin-left: 50px;
+    border: 0;
+}
+
+.sidenav .clsnav:hover{
+    background-color: #00000050;
+}
+
+.active {
+    background-color: #00000050;
+}
+
+.dropdown-container {
+    display: none;
+    padding-left: 8px;
+    background-color: #fff;
+}
+
+.dash{
+    width:80%;
+    margin:auto;
+    padding-top:3%;
+}
+
+.ct_listuser {
+    margin: auto;
+    width: 90%;
+    margin-top: 2%;
+    padding:2%;
+    background-color:white;
+}
+
+.carduser {
+    text-align: center;
+  }
+
+.ct_organize {
+    text-align: center;
+    font-size:0.6vw;
+}
+
+.ct_organize table{
+
+  margin: 5% auto 10% auto;
+
+}
+
+.ct_organize td{
+
+  font-weight: bold;
+
+}
+
+.user a:hover{
+    background-color: #00000000;
+    color:#111;
+}
+
+.out a{
+    color:red;
+}
+
+/* print modal */
+@media screen and (max-height: 450px) {
+
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+@media print {
+
+  body * {
+    visibility: hidden;
+  }
+  .modal-content * {
+    visibility: visible;
+    overflow: visible;
+  }
+  .main-page * {
+    display: none;
+  }
+  .modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    min-height: 550px;
+    visibility: visible;
+    overflow: visible !important; /* Remove scrollbar for printing. */
+  }
+  .modal-dialog {
+    visibility: visible !important;
+    overflow: visible !important; /* Remove scrollbar for printing. */
+  }
+
+}
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+    display: none;
+}
+
+#hidden_div {
+    display: none;
+}
+
+#btnSaveSign {
+    color: #fff;
+    background: #f99a0b;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.no-sign-size{
+    width:100%;
+    height:30%;
+}
+
+#signArea{
+    width:20%;
+    margin: 1% auto;
+}
+
+.sign-size{
+    width:100%;
+    height:30%;
+}
+.sign-container {
+    width: 90%;
+    margin: auto;
+}
+.sign-preview {
+    width: 150px;
+    height: 50px;
+    border: solid 1px #CFCFCF;
+    margin: 15% 5px;
+}
+.tag-ingo {
+    font-family: cursive;
+    font-size: 12px;
+    text-align: left;
+    font-style: oblique;
+}
+.center-text {
+    text-align: center;
+}
+
+/* dropdown menu */
+.dropbtn {
+    color: white;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {color:#ffffff80;}
+
+  .loginbtn{
+    color:#fff;
+    background-color: Transparent;
+  }
+
+  .loginbtn:hover{
+    color:#ffffff80;
+    background-color: Transparent;
+  }
+
+  .btnmenu:hover{
+    color:#fff;
+    background-color: #00000050;
+  }

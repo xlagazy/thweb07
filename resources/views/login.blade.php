@@ -32,6 +32,7 @@
 
 </head>
 <body style="background-color:rgb(0, 173, 241);">
+
   <div class="shadow p-3 mb-5 bg-white rounded" style="width:25%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 
     <form action="/loginuser" method="post" style="text-align:center;">
