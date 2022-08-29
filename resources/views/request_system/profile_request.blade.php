@@ -17,7 +17,7 @@
                         <label><b>Signature</b></label>
                         <div style="text-align:center; margin-bottom:1%; ">
                             @php 
-                              $signature = App\Http\Controllers\RequestController::imgSignature();
+                                $signature = App\Http\Controllers\RequestController::imgSignature();
                             @endphp
 
                             @if(empty($signature)))

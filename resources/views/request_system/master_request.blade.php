@@ -19,9 +19,10 @@
     <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+
 </head>
 <body style="background-color:#E8E7E7;">
+    
 
     <div id="mySidenav" class="sidenav" style="background-color:#fff;">
 
@@ -87,6 +88,9 @@
 
     <!-- script open nav -->
     <script type="text/javascript" src="{{ URL::asset('/scripts/onclicksidenav.js') }}"></script>
+
+    <!-- script check login -->
+    <script type="text/javascript" src="{{ URL::asset('/scripts/checklogin.js') }}"></script>
 
     <!-- script signature pad -->
     <link href="/css/jquery.signaturepad.css" rel="stylesheet">
