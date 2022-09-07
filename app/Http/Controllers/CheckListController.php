@@ -40,23 +40,7 @@ class CheckListController extends Controller
     }
 
     function showEditChecklist(){
-        $member = DB::select('select user_id, employees_no, password, name, section, sub, position, tel, image, status_user, sc.sect_name, sb.sub_it_name
-                              from member mb 
-                              inner join section sc 
-                              on sc.sect_id = mb.section
-                              inner join sub_it sb
-                              on sb.sub_it_id = mb.sub
-                              where status_user = 2
-                              order by employees_no');
-        $status = DB::select('select * from status');
-        $checkdate = DB::select("select check_date from checklist group by check_date order by check_date desc");
-
-        return view('organize.editchecklist', ['member' => $member, 'status' => $status, 'checkdate' => $checkdate]);
-    }
-
-    function filterChecklist(Request $request){
-        $checkdate = $request->input('check_date');
-
+        $checked = DB::select("select check_date from checklist group by check_date order by check_date desc limit 1");
         $member = DB::select('select mb.user_id, employees_no, password, name, section, sub, position, tel, image, status_user, sc.sect_name, sb.sub_it_name,
                               cl.check_id, cl.temperature, cl.status
                               from member mb 
@@ -68,11 +52,31 @@ class CheckListController extends Controller
                               on cl.user_id = mb.user_id
                               where cl.check_date = ? and status_user = 2
                               order by employees_no
-                              ', [$checkdate]);
+                              ', [$checked[0]->check_date]);
         $status = DB::select('select * from status');
         $checkdate = DB::select("select check_date from checklist group by check_date order by check_date desc");
 
-        return view('organize.editchecklist', ['member' => $member, 'status' => $status, 'checkdate' => $checkdate]);
+        return view('organize.editchecklist', ['member' => $member, 'status' => $status, 'checkdate' => $checkdate, 'checked' => $checked]);
+    }
+
+    function filterChecklist(Request $request){
+        $checked = $request->input('check_date');
+        $member = DB::select('select mb.user_id, employees_no, password, name, section, sub, position, tel, image, status_user, sc.sect_name, sb.sub_it_name,
+                              cl.check_id, cl.temperature, cl.status
+                              from member mb 
+                              inner join section sc 
+                              on sc.sect_id = mb.section
+                              inner join sub_it sb
+                              on sb.sub_it_id = mb.sub
+                              inner join checklist cl
+                              on cl.user_id = mb.user_id
+                              where cl.check_date = ? and status_user = 2
+                              order by employees_no
+                              ', [$checked]);
+        $status = DB::select('select * from status');
+        $checkdate = DB::select("select check_date from checklist group by check_date order by check_date desc");
+
+        return view('organize.editchecklist', ['member' => $member, 'status' => $status, 'checkdate' => $checkdate, 'checked' => $checked]);
     }
 
     function editChecklist(Request $request){

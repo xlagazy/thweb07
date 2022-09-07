@@ -35,7 +35,7 @@
         </div>
 
         <div class="dropdown-container">
-            <a href="/testcont" >test 1</a>
+            <a href="/listrequestapp/user" >List request application</a>
             <a href="/testcont" >test 1</a>
             <a href="/testcont" >test 1</a>
         </div>
@@ -87,7 +87,7 @@
     <script type="text/javascript" src="{{ URL::asset('/scripts/dropdown.js') }}"></script>
 
     <!-- script open nav -->
-    <script type="text/javascript" src="{{ URL::asset('/scripts/onclicksidenav.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('/scripts/onclicksidenavrequest.js') }}"></script>
 
     <!-- script check login -->
     <script type="text/javascript" src="{{ URL::asset('/scripts/checklogin.js') }}"></script>
@@ -101,8 +101,8 @@
     <script type='text/javascript' src="/js/html2canvas.js"></script>
     <script src="/js/json2.min.js"></script>
     
-    <!-- refresh page if back -->
     <script>
+        //refresh page if back
         window.onpageshow = function(event) {
         if (event.persisted) {
             window.location.reload() 

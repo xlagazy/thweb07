@@ -222,61 +222,61 @@ class EquipmentController extends Controller
     function equipnumber($equip_type){
         
         if($equip_type == 2){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THPRT%" order by equipment_no desc limit 1');
+            $type = DB::select('select SUBSTR(equipment_no , 6, 10) eqp_no from equipment where equipment_no LIKE "THPRT%" order by CAST(eqp_no as int) desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THPRT" . "1";
             }
             else{
-                $no = substr($type[0]->equipment_no,5);
+                $no = $type[0]->eqp_no;
                 return $equipment_no = "THPRT".($no+1);
             }
         }
 
         if($equip_type == 3){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THNET%" order by equipment_no desc limit 1');
+            $type = DB::select('select SUBSTR(equipment_no , 6, 10) eqp_no from equipment where equipment_no LIKE "THNET%" order by CAST(eqp_no as int) desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THNET" . "1";
             }
             else{
-                $no = substr($type[0]->equipment_no,5);
+                $no = $type[0]->eqp_no;
                 return $equipment_no = "THNET".($no+1);
             }
         }
 
         if($equip_type == 4){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THUPS%" order by equipment_no desc limit 1');
+            $type = DB::select('select SUBSTR(equipment_no , 6, 10) eqp_no from equipment where equipment_no LIKE "THUPS%" order by CAST(eqp_no as int) desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THUPS" . "1";
             }
             else{
-                $no = substr($type[0]->equipment_no,5);
+                $no = $type[0]->eqp_no;
                 return $equipment_no = "THUPS".($no+1);
             }
         }
 
         if($equip_type == 5){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THAIR%" order by equipment_no desc limit 1');
+            $type = DB::select('select SUBSTR(equipment_no , 6, 10) eqp_no from equipment where equipment_no LIKE "THAIR%" order by CAST(eqp_no as int) desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THAIR" . "1";
             }
             else{
-                $no = substr($type[0]->equipment_no,5);
+                $no = $type[0]->eqp_no;
                 return $equipment_no = "THAIR".($no+1);
             }
         }
 
         if($equip_type == 6){
-            $type = DB::select('select equipment_no from equipment where equipment_no LIKE "THEQP%" order by equipment_no desc limit 1');
+            $type = DB::select('select SUBSTR(equipment_no , 6, 10) eqp_no from equipment where equipment_no LIKE "THEQP%" order by CAST(eqp_no as int) desc limit 1');
 
             if(empty($type)){
                 return $equipment_no = "THEQP" . "1";
             }
             else{
-                $no = substr($type[0]->equipment_no,5);
+                $no = $type[0]->eqp_no;
                 return $equipment_no = "THEQP".($no+1);
             }
         }

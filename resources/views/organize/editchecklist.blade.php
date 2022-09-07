@@ -12,7 +12,11 @@
                 <b style="margin:5px;">Choose date : </b>
                 <select name="check_date" class="form-control" style="width:15%" required>
                     @foreach($checkdate as $checkdated)
-                        <option value="{{$checkdated->check_date}}">{{date("d-M-Y", strtotime($checkdated->check_date))}}</option>
+                        @if($checked == $checkdated->check_date)
+                            <option value="{{$checkdated->check_date}}" selected>{{date("d-M-Y", strtotime($checkdated->check_date))}}</option>
+                        @else
+                            <option value="{{$checkdated->check_date}}">{{date("d-M-Y", strtotime($checkdated->check_date))}}</option>
+                        @endif
                     @endforeach
                 </select>
 
