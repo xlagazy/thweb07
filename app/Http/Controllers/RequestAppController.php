@@ -62,26 +62,42 @@ class RequestAppController extends Controller
         return redirect()->back();
     }
 
+    function addApproveChiefUser($req_app_id, $emplouee_no){
+        DB::update('update request_app_approve set chf_user_approve = ? where req_app_id = ?', [$emplouee_no, $req_app_id]);
+
+        return redirect()->back();
+    }
+
     public static function approveUser($id){
         $profile = DB::select('select * from ad_profile where employee_no = ?', [$id]);
         
         echo '<img class="signature_request" src="/images/signature_request/'.$profile[0]->signature.'"></img>';
     }
 
-    public static function approveChiefUser($id){
-        $profile = DB::select('select * from ad_profile where employee_no = ?', [$id]);
+    public static function approveChiefUser($req_app_id, $emplouee_no){
+        $profile = DB::select('select * from ad_profile where employee_no = ?', [$emplouee_no]);
+        $request_app = DB::select('select rq.chf_user_approve, pf.signature from request_app_approve rq
+                                    inner join ad_profile pf
+                                    on pf.employee_no = rq.chf_user_approve
+                                    where rq.req_app_id = ?', [$req_app_id]);
+
+        if(empty($request_app[0]->chf_user_approve)){
+            if(strpos($profile[0]->position,'Chief') !== false || strpos($profile[0]->position,'Mgr') !== false ){
+                if(empty($profile[0]->signature)){
+                    echo '<button class="text-white bg-success" onclick="notsignature()" >Approve</button>';
+                }
+                else{
+                    echo '<button class="text-white bg-success" onclick="apprveChiefUser('.$req_app_id.','.$emplouee_no.')">Approve</button>';
+                }
+            }
+            else if(!strpos($profile[0]->position,'Chief') !== false){
+                echo '<button class="text-white bg-secondary disabled">Approve</button>';
+            }
+        }
+        else{
+            echo '<img class="signature_request" src="/images/signature_request/'.$request_app[0]->signature.'"></img>';
+        }
         
-        if(strpos($profile[0]->position,'Chief') !== false || strpos($profile[0]->position,'Mgr') !== false ){
-            if(empty($profile[0]->signature)){
-                echo '<button class="text-white bg-success" onclick="notsignature()" >Approve</button>';
-            }
-            else{
-                echo '<button class="text-white bg-success">Approve</button>';
-            }
-        }
-        else if(!strpos($profile[0]->position,'Chief') !== false){
-            echo '<button class="text-white bg-secondary disabled">Approve</button>';
-        }
         
     }
 

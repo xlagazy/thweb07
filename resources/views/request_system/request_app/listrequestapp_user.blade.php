@@ -35,9 +35,8 @@
 
                         </td>
                         <td class="text-center" style="width:5%">
-                            
                             @php
-                                $profile = App\Http\Controllers\RequestAppController::approveChiefUser(Cookie::get('employee_no'));
+                                $profile = App\Http\Controllers\RequestAppController::approveChiefUser($data->req_app_id, Cookie::get('employee_no'));
                             @endphp
                         </td>
                         <td class="text-center" style="width:5%">

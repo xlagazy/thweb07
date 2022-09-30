@@ -32,17 +32,21 @@ class Controller extends BaseController
     }
 
     function test(){
-        $member = DB::connection('mysql3')->select('show columns from member');
+        /*$member = DB::connection('mysql3')->select('show columns from member');
 
         $member2 = DB::connection('mysql3')->select('select position from member group by position');
 
         foreach($member2 as $members){
             echo $members->position."<br>";
-        }
+        }*/
 
         /*foreach($member as $members){
             echo $members->Field."<br>";
         }*/
+
+        $ibm = DB::connection('ibmodbc')->select('select * from qsys2.SYS_STATUS');
+
+        printr($ibm);
     }
     
     function testftp(){

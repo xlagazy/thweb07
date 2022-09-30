@@ -92,6 +92,9 @@
     <!-- script check login -->
     <script type="text/javascript" src="{{ URL::asset('/scripts/checklogin.js') }}"></script>
 
+    <!-- script check login -->
+    <script type="text/javascript" src="{{ URL::asset('/scripts/approve.js') }}"></script>
+
     <!-- script signature pad -->
     <link href="/css/jquery.signaturepad.css" rel="stylesheet">
     <script src="/js/numeric-1.2.6.min.js"></script> 

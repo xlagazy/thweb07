@@ -19,6 +19,8 @@ Route::get('/updateuserprofilead', [RequestController::class, 'updateUserProfile
 
 Route::post('/addrequestapp', [RequestAppController::class, 'addRequestApp']);
 
-Route::get('//listrequestapp/user', [RequestAppController::class, 'listRequestAppUser']);
+Route::get('/listrequestapp/user', [RequestAppController::class, 'listRequestAppUser']);
+
+Route::get('/listrequestapp/approvechiefuser/{id}/{employee_no}', [RequestAppController::class, 'addApproveChiefUser']);
 
 ?>

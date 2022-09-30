@@ -95,6 +95,22 @@ return [
             'engine' => null,
         ],
 
+        'ibmodbc' => [
+            'driver' => 'odbc',
+            'dsn' => 'IBMODBC',
+            'database' => 'QSYS2',
+            'host' => '127.0.0.1',
+            'username' => 'ODBCWEB',
+            'password' => 'ODBCWEB',
+            'unix_socket' => '',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
