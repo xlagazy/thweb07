@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6f03d7fa5bee875b104ab7968d67292",
+    "content-hash": "db7e0cead6390a26a90d6feff4a3a37c",
     "packages": [
+        {
+            "name": "abram/laravel-odbc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andreossido/laravel-odbc.git",
+                "reference": "a6be5f57681dc9488e657ccff36716f08d73b1e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andreossido/laravel-odbc/zipball/a6be5f57681dc9488e657ccff36716f08d73b1e2",
+                "reference": "a6be5f57681dc9488e657ccff36716f08d73b1e2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.1 || >= 6.0",
+                "illuminate/support": "~5.1 || >= 6.0",
+                "php": "^5.3.3 || >=7.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Abram\\Odbc\\ODBCServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Andrea Abram",
+                    "email": "andreossido@gmail.com",
+                    "homepage": "https://github.com/andreossido",
+                    "role": "Developer"
+                }
+            ],
+            "description": "ODBC integration for Laravel framework ",
+            "homepage": "https://github.com/andreossido/laravel-odbc",
+            "support": {
+                "issues": "https://github.com/andreossido/laravel-odbc/issues",
+                "source": "https://github.com/andreossido/laravel-odbc/tree/master"
+            },
+            "time": "2020-08-25T10:45:35+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -8251,12 +8301,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "abram/laravel-odbc": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.3.0"
 }
