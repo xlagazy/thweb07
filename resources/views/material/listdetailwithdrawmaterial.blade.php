@@ -36,7 +36,7 @@
       
       <!-- table list eqmuipment -->
       <div class="table-responsive">
-         <table class="table table-bordered table-sm">
+         <table class="table table-bordered table-sm" id="withdrawtable">
             @if(count($withdrawmaterial) == 0)
                <caption style="text-align:center;border:1px solid;"><h4>Not found data</h4></caption>
             @endif

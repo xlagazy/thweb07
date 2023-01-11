@@ -70,7 +70,6 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                     <button type="button" name="btn2" class="btn btn-success addnoti">แจ้งซ่อม</button>
                 </div>
-
             </form>
 
             <!-- jQuery -->

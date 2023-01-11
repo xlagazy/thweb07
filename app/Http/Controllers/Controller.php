@@ -31,6 +31,34 @@ class Controller extends BaseController
         
     }
 
+    public static function getName($id){
+
+        $data = DB::select('select name from member where user_id = ?', [$id]);
+
+        if(empty($data)){
+            $name = "";
+        }
+        else{
+            $name = $data[0]->name;
+        }
+        return $name;
+
+    }
+
+    public static function getStamp($id){
+
+        $data = DB::select('select stamp from member where user_id = ?', [$id]);
+
+        if(empty($data)){
+            $stamp = "";
+        }
+        else{
+            $stamp = $data[0]->stamp;
+        }
+        return $stamp;
+
+    }
+
     function test(){
         /*$member = DB::connection('mysql3')->select('show columns from member');
 
@@ -44,9 +72,29 @@ class Controller extends BaseController
             echo $members->Field."<br>";
         }*/
 
-        $ibm = DB::connection('ibmodbc')->select('select * from qsys2.SYS_STATUS');
+        //////////////////////////////////////////////////////////////////////////////////////////////
 
-        printr($ibm);
+        $user="ODBCWEB";
+        $password="ODBCWEB";
+            
+        //storing connection id in $conn
+        $conn=odbc_connect('IBMODBC',$user, $password);
+        
+        //Checking connection id or reference
+        if (!$conn)
+        {
+            echo (die(odbc_error()));
+        }
+        else
+        {
+            $sql = "SELECT * FROM qsys2.SYS_STATUS";
+            $query = odbc_exec($conn,$sql);
+            
+            $data = odbc_fetch_array($query);
+            echo json_encode($data);
+        }
+        //Resource releasing
+        odbc_close($conn);
     }
     
     function testftp(){

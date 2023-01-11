@@ -246,3 +246,13 @@
 .center-text {
     text-align: center;
 }
+
+.col-50p{
+    width: 50%;
+    word-wrap: break-word;
+}
+
+.col-100p{
+    width: 100%;
+    word-wrap: break-word;
+}

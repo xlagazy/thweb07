@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\NotifyrepairController;
 
+Route::get('indexnotifyrepair', [NotifyrepairController::class, 'indexNotifyRepair']);
+
 Route::get('notifyrepair', [NotifyrepairController::class, 'notifyRepair']);
 
 Route::post('addnotifyrepair', [NotifyrepairController::class, 'addNotifyRepair']);

@@ -22,6 +22,10 @@ class NotifyrepairController extends Controller
         "3" => "กำลังดำเนินการ",
         "4" => "เสร็จสิ้น"
     );
+
+    function indexNotifyRepair(){
+        return redirect()->action([RequestUserController::class, 'listRequestUser']);
+    }
     
     function notifyRepair(){
 
@@ -475,7 +479,7 @@ class NotifyrepairController extends Controller
 
     }
 
-    function generateDigit($length) {
+    public static function generateDigit($length) {
         return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
     }
 

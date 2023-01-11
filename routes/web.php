@@ -27,6 +27,10 @@ Route::get('/test', [Controller::class, 'test']);
 
 Route::get('/testftp', [Controller::class, 'testftp']);
 
+Route::get('/as400', function(){
+    return view('as400_status');
+});
+
 //login-logout
 
 include "route_login.php";
@@ -38,6 +42,10 @@ include "route_user.php";
 //equipment
 
 include "route_equipment.php";
+
+//other equipment
+
+include "route_other_equipment.php";
 
 //vendor
 
@@ -91,3 +99,7 @@ include "route_ftp.php";
 //request system
 
 include "route_request.php";
+
+//request user
+
+include "route_request_user.php";

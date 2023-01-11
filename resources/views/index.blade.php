@@ -11,15 +11,15 @@
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.css">
+    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.min.css">
     
     <!-- Scripts -->
     <script src="/scripts/jquery-3.5.1.min.js"></script>
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="/bootstrap-select/dist/js/bootstrap-select.js"></script>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="/charts/loader.js"></script>
+    <script src="/popper/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     
 </head>
 <body style="margin:0;background-color:#B5B5B530;">
@@ -54,24 +54,26 @@
             <a href="{{URL::to('showeditchecklist')}}">แก้ไขเช็คเวลาทำงาน</a>
           </div>
       
-          <div class="dropdown-btn">แจ้งซ่อม
+          <div class="dropdown-btn">Request
             <i class="fa fa-caret-down"></i>
           </div>
           <div class="dropdown-container">
             <a href="{{URL::to('/listnotifyrepair')}}">รายการแจ้งซ่อม </a>
             <a href="{{URL::to('/recievenotifyrepair')}}">งานที่รับ</a>
+            <a href="{{URL::to('/listrequestuser/it')}}">Request User</a>
           </div>
 
-          @if(session()->get('type_user') == 1 || session()->get('sub') == 3)
+          @if(session()->get('type_user') == 1 || session()->get('sub') == 3 || session()->get('sub') == 4)
             <div class="dropdown-btn">Equipment
               <i class="fa fa-caret-down"></i>
             </div>
             <div class="dropdown-container">
-              <a href="{{URL::to('/listequipment')}}">จัดการ Equipment</a>
+              <a href="{{URL::to('/listequipment')}}">Main Equipment</a>
+              <a href="{{URL::to('/listotherequipment')}}">Others Equipment</a>
             </div>
           @endif
 
-          @if(session()->get('type_user') == 1 || session()->get('sub') == 3)
+          @if(session()->get('type_user') == 1 || session()->get('sub') == 3 || session()->get('sub') == 4)
             <div class="dropdown-btn">Software
               <i class="fa fa-caret-down"></i>
             </div>
@@ -80,7 +82,7 @@
             </div>
           @endif
 
-          @if(session()->get('type_user') == 1 || session()->get('sub') == 3)
+          @if(session()->get('type_user') == 1 || session()->get('sub') == 3 || session()->get('sub') == 4)
             <div class="dropdown-btn">Stock
               <i class="fa fa-caret-down"></i>
             </div>
@@ -89,7 +91,7 @@
             </div>
           @endif
 
-          @if(session()->get('type_user') == 1 || session()->get('sub') == 3)
+          @if(session()->get('type_user') == 1 || session()->get('sub') == 3 || session()->get('sub') == 4)
             <div class="dropdown-btn">Material
               <i class="fa fa-caret-down"></i>
             </div>
@@ -100,7 +102,7 @@
             </div>
           @endif
 
-          @if(session()->get('type_user') == 1 || session()->get('sub') == 3)
+          @if(session()->get('type_user') == 1 || session()->get('sub') == 3 || session()->get('sub') == 4)
             <div class="dropdown-btn">Borrow
               <i class="fa fa-caret-down"></i>
             </div>
@@ -110,7 +112,7 @@
           @endif
 
 
-          @if(session()->get('type_user') == 1 || session()->get('sub') == 3)
+          @if(session()->get('type_user') == 1 || session()->get('sub') == 3 || session()->get('sub') == 4)
             <div class="dropdown-btn">Master
               <i class="fa fa-caret-down"></i>
             </div>

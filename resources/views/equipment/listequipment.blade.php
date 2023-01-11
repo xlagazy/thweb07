@@ -8,7 +8,7 @@
 
       <div>
          <a href="{{URL::to('listequipment')}}" class="text-decoration-none text-dark">
-            <h1 style="margin-bottom:2%">Equipment</h1>
+            <h1 style="margin-bottom:2%">Main Equipment</h1>
          </a>
       </div>
 
@@ -33,7 +33,7 @@
                <caption style="text-align:center;border:1px solid;"><h4>Not found data</h4></caption>
             @endif
          <thead>
-            <form form action="{{URL::to('listequipment/search')}}" method="get" class="form-inline" id="form" style="margin-right:auto;">
+            <form action="{{URL::to('listequipment/search')}}" method="get" class="form-inline" id="form" style="margin-right:auto;">
                <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>" >
                <tr>
                   <th scope="col" class="align-top">No</th>
@@ -136,7 +136,7 @@
                         @endif
                   </td>
                   <td style="text-align:center;">
-                     <a href="" data-toggle="modal" data-target="#qrcode{{$equipments->equipment_no}}">{{ QrCode::size(40)->generate($equipments->equipment_no) }}</a>
+                        <a href="" data-toggle="modal" data-target="#qrcode{{$equipments->equipment_no}}">{{ QrCode::size(40)->generate($equipments->equipment_no) }}</a>
                   </td>
                   <td>
                         <a href="/showeditequipment/{{$equipments->equipment_no}}">
@@ -175,6 +175,8 @@
       <script type="text/javascript" src="{{asset('scripts/deleteuser.js')}}"></script>
       <script type="text/javascript" src="{{asset('scripts/exportdata.js')}}"></script>
       <script type="text/javascript" src="{{asset('scripts/showdiv.js')}}"></script>
+      <script type="text/javascript" src="{{asset('scripts/checkequipstatus.js')}}"></script>
+
       <!-- enter search -->
       <script>
          document.getElementById("search_equip_no").addEventListener("keypress", function(event) {

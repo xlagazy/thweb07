@@ -20,11 +20,15 @@
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/bootstrap-select/dist/css/bootstrap-select.min.css">
     
     <!-- Scripts -->
     <script src="/scripts/jquery-3.5.1.min.js"></script>
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="/charts/loader.js"></script>
+    <script src="/popper/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
 </head>
 <body style="background:white;">

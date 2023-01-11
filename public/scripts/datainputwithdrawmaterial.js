@@ -11,6 +11,7 @@ $(document).ready(function(){
        var stock_material_no = currentRow.find("td:eq(9)").html(); 
        var withdraw_material_detail_no = currentRow.find("td:eq(10)").html(); 
        var remark = currentRow.find("td:eq(11)").html(); 
+       
        for(let materials of material){
          if(material_no == materials.material_no){
           document.getElementById(materials.material_no).selected = true;
@@ -23,7 +24,6 @@ $(document).ready(function(){
        document.getElementById("stock_material_no").value = stock_material_no;
        document.getElementById("withdraw_material_detail_no").value = withdraw_material_detail_no;
        document.getElementById("edt_remark").value = remark;
-
   });
 
 });

@@ -105,7 +105,7 @@
 
                     <!-- Chief -->
                     @foreach($member as $members)
-                        @if($members->sub_it_name == "Developer 1" && $members->position_name == "Chief")
+                        @if($members->sub_it_id == 1 && $members->position_name == "Chief")
                         <div class="carduser">
 
                             @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
@@ -143,7 +143,7 @@
                     <!-- Member -->
 
                     @foreach($member as $members)
-                        @if($members->sub_it_name == "Developer 1" && $members->position_name != "Manager" && $members->position_name != "Chief")
+                        @if($members->sub_it_id == 1 && $members->position_name != "Manager" && $members->position_name != "Chief")
                         <div class="carduser">
 
                             @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
@@ -191,7 +191,7 @@
                     <!-- Chief -->
  
                     @foreach($member as $members)
-                        @if($members->sub_it_name == "Developer 2" && $members->position_name == "Chief")
+                        @if($members->sub_it_id == 2 && $members->position_name == "Chief")
                             <div class="carduser">
 
                                 @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
@@ -229,7 +229,7 @@
                     <!-- Member -->
 
                     @foreach($member as $members)
-                        @if($members->sub_it_name == "Developer 2" && $members->position_name != "Manager" && $members->position_name != "Chief")
+                        @if($members->sub_it_id == 2 && $members->position_name != "Manager" && $members->position_name != "Chief")
                         <div class="carduser">
 
                             @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
@@ -270,14 +270,14 @@
 
             <div class="col" style="padding-left:2%;">
                 <div class="row justify-content-center" style="margin-bottom:1%;">
-                    <h2 style="text-shadow: 2px 2px 5px red;">Application</h2>
+                    <h2 style="text-shadow: 2px 2px 5px red;">IT Infra</h2>
                 </div>
                 <div class="row"> 
                     
                     <!-- Chief -->
 
                     @foreach($member as $members)
-                        @if($members->sub_it_name == "Application" && $members->position_name == "Chief")
+                        @if($members->sub_it_id == 3 && $members->position_name == "Chief")
                             <div class="carduser">
 
                                 @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
@@ -315,7 +315,91 @@
                         <!-- Member -->
 
                         @foreach($member as $members)
-                            @if($members->sub_it_name == "Application" && $members->position_name != "Manager" && $members->position_name != "Chief")
+                            @if($members->sub_it_id == 3 && $members->position_name != "Manager" && $members->position_name != "Chief")
+                            <div class="carduser">
+
+                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                                    <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
+                                @else
+                                    <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
+                                @endif
+
+                                <table style="font-size:0.6vw;">
+                                    <tr>
+                                        <td style="text-align:right;">Name : </td>
+                                        <td style="text-align:left;">{{$members->name}}</td>
+                                    <tr>
+                                    <tr>
+                                        <td style="text-align:right;">Position : </td>
+                                        <td style="text-align:left;">{{$members->position_name}}</td>
+                                    <tr>
+                                    <tr>
+                                        <td style="text-align:right;">Ext : </td>
+                                        <td style="text-align:left;">{{$members->tel}}</td>
+                                    <tr>
+                                    <tr>
+                                        <td style="text-align:right;">Status : </td>
+                                        @if($members->status != 1)
+                                            <td style="text-align:left; color:red;">{{$members->status_name}}</td>
+                                        @else
+                                            <td style="text-align:left;">{{$members->status_name}}</td>
+                                        @endif
+                                    <tr>
+                                </table>
+                            </div>
+                            @endif
+                        @endforeach
+                </div>
+            </div>
+
+            <div class="col" style="padding-left:2%;">
+                <div class="row justify-content-center" style="margin-bottom:1%;">
+                    <h2 style="text-shadow: 2px 2px 5px red;">IT Admin</h2>
+                </div>
+                <div class="row"> 
+                    
+                    <!-- Chief -->
+
+                    @foreach($member as $members)
+                        @if($members->sub_it_id == 4 && $members->position_name == "Chief")
+                            <div class="carduser">
+
+                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                                    <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
+                                @else
+                                    <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
+                                @endif
+
+                                <table style="font-size:0.6vw;">
+                                    <tr>
+                                        <td style="text-align:right;">Name : </td>
+                                        <td style="text-align:left;">{{$members->name}}</td>
+                                    <tr>
+                                    <tr>
+                                        <td style="text-align:right;">Position : </td>
+                                        <td style="text-align:left;">{{$members->position_name}}</td>
+                                    <tr>
+                                    <tr>
+                                        <td style="text-align:right;">Ext : </td>
+                                        <td style="text-align:left;">{{$members->tel}}</td>
+                                    <tr>
+                                    <tr>
+                                        <td style="text-align:right;">Status : </td>
+                                        @if($members->status != 1)
+                                            <td style="text-align:left; color:red;">{{$members->status_name}}</td>
+                                        @else
+                                            <td style="text-align:left;">{{$members->status_name}}</td>
+                                        @endif
+                                    <tr>
+                                </table>
+                            </div>
+                            @endif
+                        @endforeach
+
+                        <!-- Member -->
+
+                        @foreach($member as $members)
+                            @if($members->sub_it_id == 4 && $members->position_name != "Manager" && $members->position_name != "Chief")
                             <div class="carduser">
 
                                 @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)

@@ -149,7 +149,7 @@
 
                   <div class="col">
                      <label><b>Status</b></label>
-                     <select name="equipment_status_input" id="equipment_status_input" class="form-control" required>
+                     <select name="equipment_status_input" id="equipment_status" class="form-control" required>
                         <option disabled selected value>Choose...</option>
                         <option value="Using">Using</option>
                         <option value="Broken">Broken</option>
@@ -165,30 +165,19 @@
 
                     <div class="col">
                         <!-- Has check script on showdiv.js -->
-                        <div id="hidden_div_input">
+                        <div id="hidden_div">
                             <!-- cause broken -->
                             <label style="color:red;"><b>Cause Broken</b></label>
-                            <input type="" class="form-control" name="cause_broken_input" id="cause_broken" value="" placeholder="Cause Broken" maxlength="4">
+                            <input type="" class="form-control" name="cause_broken" id="cause_broken" value="" placeholder="Cause Broken" maxlength="4">
                             <div class="invalid-feedback">Please input data</div>                     
                         </div>
 
-                        <div id="hidden_div2_input">
+                        <div id="hidden_div2">
                             <!-- write off date -->
                             <label style="color:red;"><b>Write off date</b></label>
-                            <input type="date" name="write_off_date" id="write_off_date_input" value=""  class="form-control" />
+                            <input type="date" name="write_off_date" id="write_off_date" value=""  class="form-control" />
                             <div class="invalid-feedback">Please choose date</div>
                         </div>
-
-                        <script>
-                            document.getElementById('equipment_status_input').addEventListener('change', function () {
-                                if(this.value == 'Broken'){
-                                    document.getElementById('cause_broken').required = true;
-                                }
-                                if(this.value == 'Write off'){
-                                    document.getElementById('write_off_date_input').required = true;
-                                }
-                            });
-                        </script>
                     </div>
                </div>
 

@@ -33,7 +33,6 @@ class EquipmentController extends Controller
         $section = DB::select('select sect_id, sect_name from section order by sect_name');
         $os = DB::select("select os_id, os_name from os");
         $com_type = DB::select('select com_id, com_name from com_type');
-        $equip_type = DB::select('select * from equipment_type');
 
         $eq = DB::table('equipment')
                 ->join('member', 'member.user_id', '=', 'equipment.person_in_charge')
@@ -63,6 +62,7 @@ class EquipmentController extends Controller
                          'equipment.image',
                          'com_type.com_id',
                          'com_type.com_name',
+                         'com_type.abbreviation_com_name',
                          'os.os_id',
                          'os.os_name',
                          'vendor.vendor_id',
@@ -133,6 +133,7 @@ class EquipmentController extends Controller
                          'equipment.image',
                          'com_type.com_id',
                          'com_type.com_name',
+                         'com_type.abbreviation_com_name',
                          'os.os_id',
                          'os.os_name',
                          'vendor.vendor_id',
@@ -148,7 +149,7 @@ class EquipmentController extends Controller
                 ->where('equipment.equipment_name', 'LIKE', '%'.$search_equip_name.'%')
                 ->where('equipment.fix_asset', 'LIKE', '%'.$search_fix_asset.'%')
                 ->where('equipment_type.equip_type_name', 'LIKE', '%'.$equip_type_name.'%')
-                ->where('section.sect_name', 'LIKE', '%'.$sect_name.'%')
+                ->where('section.sect_name', '=', $sect_name)
                 ->where('com_type.com_name', 'LIKE', '%'.$com_name.'%')
                 ->orderBy('equipment.no', 'DESC')
                 ->paginate(10);
@@ -158,65 +159,6 @@ class EquipmentController extends Controller
                      'search_equip_no' => $search_equip_no, 'search_equip_name' => $search_equip_name,
                      'search_fix_asset' => $search_fix_asset, 'equip_type_name' => $equip_type_name, 'com_name' => $com_name, 
                     'sect_name' => $sect_name]);
-    }
-
-    function sourceEquipment($id){
-
-        $equip_type = DB::select('select * from equipment_type');
-        $user = DB::select("select user_id, name, sc.sect_name from member mb
-                            inner join section sc
-                            on mb.section = sc.sect_id
-                            where sc.sect_name = ? ", ["IT"]);
-        $vendor = DB::select('select vendor_id, vendor_name from vendor');
-        $depart = DB::select('select dept_id, dept_name from department');
-        $section = DB::select('select sect_id, sect_name from section order by sect_name');
-        $os = DB::select("select os_id, os_name from os");
-        $com_type = DB::select('select com_id, com_name from com_type');
-
-        $eq = DB::table('equipment')
-                ->join('member', 'member.user_id', '=', 'equipment.person_in_charge')
-                ->join('vendor', 'vendor.vendor_id', '=', 'equipment.vendor_id')
-                ->join('department', 'department.dept_id', '=', 'equipment.dept_id')
-                ->join('section', 'section.sect_id', '=', 'equipment.sect_id')
-                ->join('equipment_type', 'equipment_type.equip_type_id', '=', 'equipment.equip_type_id')
-                ->join('os', 'os.os_id', '=', 'equipment.os_id')
-                ->join('com_type', 'com_type.com_id', '=', 'equipment.com_id')
-                ->select('equipment.no',
-                         'equipment.equipment_no',
-                         'equipment.equipment_name',
-                         'equipment.fix_asset',
-                         'equipment.person_in_charge',
-                         'equipment.serial_number',
-                         'equipment.location',
-                         'equipment.setup_date',
-                         'equipment.warranty',
-                         'equipment.control_person',
-                         'member.name',
-                         'equipment.tel_no',
-                         'equipment.equipment_status',
-                         'equipment.cause_broken',
-                         'equipment.write_off_date',
-                         'equipment.spec',
-                         'equipment.remark',
-                         'equipment.image',
-                         'com_type.com_id',
-                         'com_type.com_name',
-                         'os.os_id',
-                         'os.os_name',
-                         'vendor.vendor_id',
-                         'vendor.vendor_name',
-                         'department.dept_id',
-                         'department.dept_name',
-                         'section.sect_id',
-                         'section.sect_name',
-                         'equipment_type.equip_type_id',
-                         'equipment_type.equip_type_name')
-                ->where('com_type.com_name', 'LIKE', '%'.$id.'%')
-                ->orderBy('equipment.no', 'DESC')
-                ->paginate(10);
-
-        return view('equipment.sourceequipment', ['equip_type' => $equip_type, 'user' => $user, 'vendor' => $vendor, 
-                     'depart' => $depart, 'section' => $section, 'equipment' => $eq, 'os' => $os, 'com_type' => $com_type]);
     }
 
     function equipnumber($equip_type){
@@ -307,7 +249,7 @@ class EquipmentController extends Controller
         $os_id = $request->input('os_id');
         $location = $request->input('location');
         $com_id = $request->input('com_id');
-        $cause_broken_input = $request->input('cause_broken_input');
+        $cause_broken_input = $request->input('cause_broken');
         $write_off_date = $request->input('write_off_date');
 
         if($request->file('file') != ""){
@@ -388,7 +330,7 @@ class EquipmentController extends Controller
         $os_id = $request->input('os_id');
         $location = $request->input('location');
         $com_id = $request->input('com_id');
-        $cause_broken_input = $request->input('cause_broken_input');
+        $cause_broken_input = $request->input('cause_broken');
         $write_off_date = $request->input('write_off_date');
 
         if($request->file('file') != ""){
@@ -474,6 +416,23 @@ class EquipmentController extends Controller
 
         return $diff->y;
         
+    }
+
+    public static function genEquipQrOther($equipment_no){
+        $str_no = substr($equipment_no, 5);
+        if(strlen($str_no) == 1){
+            $result = "0000".$str_no;
+        }
+        if(strlen($str_no) == 2){
+            $result = "000".$str_no;
+        }
+        if(strlen($str_no) == 3){
+            $result = "00".$str_no;
+        }
+        if(strlen($str_no) == 4){
+            $result = "0".$str_no;
+        }
+        return $result;
     }
 
 }

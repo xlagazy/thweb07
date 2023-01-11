@@ -12,7 +12,9 @@
         @elseif(empty($signature[0]->signature))
             <button class="btnmenu"  onclick="notsignature()"><i class="fa fa-plus" aria-hidden="true"></i> Request Application</button>
         @else
-            <button class="btnmenu" data-toggle="modal" data-target="#addrequestappmodal"><i class="fa fa-plus" aria-hidden="true"></i> Request Application</button>
+            <button class="btnmenu" data-toggle="modal" data-target="#addrequestappmodal">
+                <i class="fa fa-plus" aria-hidden="true"></i> Request Application
+            </button>
         @endif
 
         @include('request_system.request_app.modal_add_request_app')

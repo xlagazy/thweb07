@@ -12,7 +12,6 @@
 }
 
 .contents{
-    height: 100%;
     background-color: #fff;
     margin:0 2% 2% 2%;
     padding: 1% 2% 1% 2%;
@@ -361,6 +360,36 @@
 .signature_request{
   width:50px;
   height:20px;
+}
+
+/*hidden div*/
+
+#hidden_user{
+  display: none;
+}
+
+#hidden_ad{
+  display: none;
+}
+
+#hidden_folder{
+  display: none;
+}
+
+#hidden_as400{
+  display: none;
+}
+
+#hidden_workstation{
+  display: none;
+}
+
+#hidden_button{
+  display: none;
+}
+
+#hidden_delete{
+  display: none;
 }
 
   

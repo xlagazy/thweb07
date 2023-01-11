@@ -27,6 +27,7 @@ class LoginController extends Controller
             session()->put('user_id', $members->user_id);
             session()->put('name', $members->name);
             session()->put('image', $members->image);
+            session()->put('position', $members->position);
             session()->put('type_user', $members->type_user);
             session()->put('sub', $members->sub);
           }

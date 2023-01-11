@@ -277,31 +277,6 @@ select.selectpicker {
       margin-top: -2px;
       vertical-align: middle;
     }
-
-    .bs-select-clear-selected {
-      position: relative;
-      display: block;
-      margin-right: 5px;
-      text-align: center;
-
-      @at-root .bs3#{&} {
-        padding-right: inherit;
-      }
-
-      span {
-        position: relative;
-        top: calc(((-1em / 1.5) + 1ex) / 2);
-        pointer-events: none;
-
-        @at-root .bs3#{&} {
-          top: auto;
-        }
-      }
-    }
-
-    &.bs-placeholder .bs-select-clear-selected {
-      display: none;
-    }
   }
 
   .input-group &.form-control .dropdown-toggle {
@@ -436,7 +411,6 @@ select.selectpicker {
     height: 1em;
     border-style: solid;
     border-width: 0 0.26em 0.26em 0;
-    transform-style: preserve-3d;
     transform: rotate(45deg);
   }
 }
@@ -518,12 +492,8 @@ select.selectpicker {
   width: 100%;
   @include box-sizing(border-box);
 
-  & .btn-group {
-    display: block;
-
-    & button {
-      width: 50%;
-    }
+  & .btn-group button {
+    width: 50%;
   }
 }
 
@@ -532,12 +502,8 @@ select.selectpicker {
   width: 100%;
   @include box-sizing(border-box);
 
-  & .btn-group {
-    display: block;
-
-    & button {
-      width: 100%;
-    }
+  & .btn-group button {
+    width: 100%;
   }
 }
 

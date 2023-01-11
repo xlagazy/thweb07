@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "abram/laravel-odbc": "dev-master",
         "dbt/odbc-driver": "^0.4.0",
         "fideloper/proxy": "^4.4",
         "firebase/php-jwt": "^5.4",

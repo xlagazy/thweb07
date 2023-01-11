@@ -22,7 +22,7 @@
 
 </head>
 <body style="background-color:#E8E7E7;">
-    
+
 
     <div id="mySidenav" class="sidenav" style="background-color:#fff;">
 
@@ -74,7 +74,6 @@
                         </div>
                     </span>
                 @endif
-                
             </div>
         </div>
 
@@ -117,4 +116,5 @@
             openNav();
         });
     </script>
+
 </body>

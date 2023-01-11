@@ -197,34 +197,6 @@
                         </select>
                         <div class="invalid-feedback">Please choose data</div>
                     </div>
-
-                    <script>
-                        $(document).ready(function(){
-                            var equipment_status = $('#equipment_status').val();
-                            hide_show(equipment_status);
-                            
-                            $("#equipment_status").change(function() {
-                                    var val = $(this).val();
-                                    hide_show(val);
-                            });
-                        });
-
-                        function hide_show(equipment_status){
-                            if (equipment_status == "Write off") {
-                                $("#hidden_div2").show();
-                                $("#hidden_div").hide();
-                            }
-                            else if(equipment_status == "Broken"){
-                                $("#hidden_div").show();
-                                $("#hidden_div2").hide();
-                            } 
-                            else{
-                                $("#hidden_div").hide();
-                                $("#hidden_div2").hide();
-                            }    
-                        }
-                    </script>
-
                 </div>
 
                 <div class="row">
@@ -245,18 +217,7 @@
                             <label style="color:red;"><b>Write off date</b></label>
                             <input type="date" name="write_off_date" id="write_off_date" value="{{$equipments->write_off_date}}"  class="form-control" />
                             <div class="invalid-feedback">Please choose date</div>
-                        </div>
-
-                        <script>
-                            document.getElementById('equipment_status').addEventListener('change', function () {
-                                if(this.value == 'Broken'){
-                                    document.getElementById('cause_broken').required = true;
-                                }
-                                if(this.value == 'Write off'){
-                                    document.getElementById('write_off_date').required = true;
-                                }
-                            });
-                        </script>  
+                        </div> 
                     </div>
                 </div>
 
@@ -321,5 +282,7 @@
     @endforeach
 
     <script type="text/javascript" src="{{asset('scripts/edituser.js')}}"></script>
+    <script type="text/javascript" src="{{asset('scripts/showdiv.js')}}"></script>
+    <script type="text/javascript" src="{{asset('scripts/checkequipstatus.js')}}"></script>
 
 @endsection
