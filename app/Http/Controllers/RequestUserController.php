@@ -8,7 +8,7 @@ use App\Exports\BorrowExport;
 use Excel;
 use DB;
 use DateTime;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RequestUserController extends Controller
 {
@@ -328,7 +328,7 @@ class RequestUserController extends Controller
                                     on ru.request_user_no = ra.request_user_no
                                     where ru.request_user_no = ?', [$request_user_no]);
         
-        $pdf = PDF::loadView('request_system.request_user.pdf_request_user', [$request_user_no]);
+        $pdf = Pdf::loadView('request_system.request_user.pdf_request_user', [$request_user_no]);
         $pdf->setPaper('A4', 'portrait');
         
         return @$pdf->stream('manhour'.date('d-M-Y h-i').'.pdf');
