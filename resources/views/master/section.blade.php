@@ -21,6 +21,7 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Section Name</th>
+                    <th scope="col">Department</th>
                     <th scope="col" >Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
@@ -35,6 +36,7 @@
                 <tr>
                     <td scope="row" >{{$no}}</td>
                     <td scope="row" >{{$sections->sect_name}}</td>
+                    <td scope="row" >{{$sections->dept_name}}</td>
                     <td>
                         <a href="" data-toggle="modal" data-target="#edtmodal{{$sections->sect_id}}">
                         <i class="bi bi-pencil-square"></i>
@@ -59,6 +61,23 @@
                                                 <div class="col">
                                                     <label><b>Section name</b></label>
                                                     <input type="text" class="form-control" name="sect_name" placeholder="Sect name" value="{{$sections->sect_name}}" required>
+                                                    <div class="invalid-feedback">Please input data</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label><b>Department</b></label>
+                                                    <select class="form-control" name="dept_id">
+                                                        <option selected value="" disabled>Choose...</option>
+                                                        @foreach($department as $departments)
+                                                            @if($sections->dept_id == $departments->dept_id)
+                                                                <option value="{{$departments->dept_id}}" selected>{{$departments->dept_name}}</option>
+                                                            @else
+                                                                <option value="{{$departments->dept_id}}">{{$departments->dept_name}}</option>
+                                                            @endif
+                                                        @endforeach 
+                                                    </select>
                                                     <div class="invalid-feedback">Please input data</div>
                                                 </div>
                                             </div>
@@ -113,6 +132,18 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col">
+                                <label><b>Department</b></label>
+                                <select class="form-control" name="dept_id">
+                                    <option selected value="" disabled>Choose...</option>
+                                    @foreach($department as $departments)
+                                        <option value="{{$departments->dept_id}}">{{$departments->dept_name}}</option>
+                                    @endforeach 
+                                </select>
+                                <div class="invalid-feedback">Please input data</div>
+                            </div>
+                        </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

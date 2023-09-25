@@ -10,7 +10,7 @@
   get_browser_name($_SERVER['HTTP_USER_AGENT']);
 
   if($_SERVER["HTTP_REFERER"] != ""){
-    session()->put('pageref', $_SERVER["HTTP_REFERER"]);
+      session()->put('pageref', $_SERVER["HTTP_REFERER"]);
   }
 ?>
 <html>

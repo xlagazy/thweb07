@@ -12,8 +12,8 @@ use Cookie;
 class RequestController extends Controller
 {
 
-    private $server = '10.230.8.37';
-    private $domain = '@thainjr.co.th';
+    private $server = '10.230.8.84';
+    private $domain = '@nisdt.net';
     private $port = 389;
     
     function indexRequest(){
@@ -46,19 +46,21 @@ class RequestController extends Controller
         else{
             if(empty(Cookie::get('name'))){
                 $filter="(sAMAccountName=$username)";
-                $result = ldap_search($ldap_connection,"dc=thainjr,dc=co,dc=th",$filter);
+                $result = ldap_search($ldap_connection,"OU=NISDT-Users,dc=nisdt,dc=net",$filter);
                 $info = ldap_get_entries($ldap_connection, $result);
                 for ($i=0; $i<$info["count"]; $i++){
 
-                    if($info['count'] > 1)
+                    if($info['count'] > 1){
                         break;
+                    }
                     
                     $section = $this->getSectionId($info[$i]["company"][0]);
-                    if(empty($info[$i]["title"][0])){
-                        $position = "Staff";
+
+                    if(isset($info[$i]["title"][0])){
+                        $position = $info[$i]["title"][0];
                     }
                     else{
-                        $position = $info[$i]["title"][0];
+                        $position = "";
                     }
 
                     //set cookies
@@ -66,18 +68,18 @@ class RequestController extends Controller
                     Cookie::queue('name', $info[$i]["givenname"][0], 2147483647);
                     Cookie::queue('position', $position, 2147483647);
                     Cookie::queue('section', $section, 2147483647);
-                    Cookie::queue('email', $info[$i]['userprincipalname'][0], 2147483647);
+                    Cookie::queue('email', $info[$i]['mail'][0], 2147483647);
 
                     //update database
                     $data = DB::select('select ad_profile_no from ad_profile where employee_no = ?', [$info[$i]["physicaldeliveryofficename"][0]]);
                     if(empty($data)){
                         DB::insert("insert into ad_profile (employee_no, name, surname, email, position, section) values(?, ?, ?, ?, ?, ?)",
-                                    [$info[$i]["physicaldeliveryofficename"][0], $info[$i]["givenname"][0], $info[$i]["sn"][0], $info[$i]["userprincipalname"][0],
+                                    [$info[$i]["physicaldeliveryofficename"][0], $info[$i]["givenname"][0], $info[$i]["sn"][0], $info[$i]["mail"][0],
                                     $position, $section]);
                     }
                     else{
                         DB::update("update ad_profile set employee_no = ?, name = ?, surname = ?, email = ?, position = ?, section = ? where employee_no = ?",
-                                    [$info[$i]["physicaldeliveryofficename"][0], $info[$i]["givenname"][0], $info[$i]["sn"][0], $info[$i]["userprincipalname"][0],
+                                    [$info[$i]["physicaldeliveryofficename"][0], $info[$i]["givenname"][0], $info[$i]["sn"][0], $info[$i]["mail"][0],
                                     $position, $section, $info[$i]["physicaldeliveryofficename"][0]]);
                     }
 
@@ -116,14 +118,14 @@ class RequestController extends Controller
             $fileName = "";
         }
 
-        DB::insert("insert into ad_profile (employee_no, signature) values (?, ?)", [Cookie::get('employee_no'), $fileName]);
+        DB::update("update ad_profile set signature = ? where employee_no = ?", [$fileName, Cookie::get('employee_no')]);
 
         return redirect()->back();
     }
 
     function updateUserProfileAD(){
         $username   = 'administrator';
-        $password   = '9q2w4$5h';
+        $password   = '2zx*9P02';
 
         $ldap_connection = ldap_connect($this->server, $this->port);
 
@@ -146,7 +148,7 @@ class RequestController extends Controller
         }
         else{
             $filter="(&(objectClass=user)(objectCategory=person)(physicaldeliveryofficename=*))";
-            $result = ldap_search($ldap_connection,"dc=thainjr,dc=co,dc=th",$filter);
+            $result = ldap_search($ldap_connection,"OU=M365,OU=NISDT-Users,dc=nisdt,dc=net", $filter);
             $info = ldap_get_entries($ldap_connection, $result);
             $employee_no = array();
 
@@ -155,42 +157,45 @@ class RequestController extends Controller
             }
 
             for ($i=0; $i<count($employee_no);$i++){
-                $filter2="(physicaldeliveryofficename=$employee_no[$i])";
-                $result2 = ldap_search($ldap_connection,"dc=thainjr,dc=co,dc=th",$filter2);
-                $info2 = ldap_get_entries($ldap_connection, $result2);
-                
-                for ($x=0; $x<$info2["count"]; $x++){
+                if(strlen($employee_no[$i]) == 5){
+                    $filter2="(physicaldeliveryofficename=$employee_no[$i])";
+                    $result2 = ldap_search($ldap_connection,"OU=M365,OU=NISDT-Users,dc=nisdt,dc=net",$filter2);
+                    $info2 = ldap_get_entries($ldap_connection, $result2);
+    
+                    for ($x=0; $x<$info2["count"]; $x++){
+    
+                        if(isset($info2[$x]["company"][0])){
+                            $section = $this->getSectionId($info2[$x]["company"][0]);
+                        }
 
-                    if(isset($info2[$x]["company"][0])){
-                        $section = $this->getSectionId($info2[$x]["company"][0]);
+                        if(isset($info2[$x]["title"][0])){
+                            $position = $info2[$x]["title"][0];
+                        }
+                        else{
+                            $position = "";
+                        }
+    
+                        if(isset($info2[$x]["mail"][0])){
+                            $email = $info2[$x]["mail"][0];
+                        }
+                        else{
+                            $email = "";
+                        }
+    
+                        $employee = DB::select('select employee_no from ad_profile where employee_no = ?', [$info2[$x]["physicaldeliveryofficename"][0]]);
+    
+                        if(empty($employee)){
+                            DB::insert('insert into ad_profile (employee_no, name, surname, email, position, section) values (?, ?, ?, ?, ?, ?)', 
+                                        [$info2[$x]["physicaldeliveryofficename"][0], $info2[$x]["givenname"][0], $info2[$x]["sn"][0], $email,
+                                        $position, $section]);
+                        }
+                        else{
+                            DB::update('update ad_profile set employee_no = ?, name = ?, surname = ?, email = ?, position = ?, section = ?
+                                        where employee_no = ?', [$info2[$x]["physicaldeliveryofficename"][0], $info2[$x]["givenname"][0],
+                                        $info2[$x]["sn"][0], $email, $position, $section, $info2[$x]["physicaldeliveryofficename"][0]]);
+                        }       
                     }
-
-                    if(isset($info2[$x]["mail"][0])){
-                        $email = $info2[$x]["mail"][0];
-                    }
-                    else{
-                        $email = "";
-                    }
-                    
-                    if(empty($info2[$x]["title"][0])){
-                        $position = "Staff";
-                    }
-                    else{
-                        $position = $info2[$x]["title"][0];
-                    }
-
-                    $employee = DB::select('select employee_no from ad_profile where employee_no = ?', [$info2[$x]["physicaldeliveryofficename"][0]]);
-
-                    if(empty($employee)){
-                        DB::insert('insert into ad_profile (employee_no, name, surname, email, position, section) values (?, ?, ?, ?, ?, ?)', 
-                                    [$info2[$x]["physicaldeliveryofficename"][0], $info2[$x]["givenname"][0], $info2[$x]["sn"][0], $email,
-                                    $position, $section]);
-                    }
-                    else{
-                        DB::update('update ad_profile set employee_no = ?, name = ?, surname = ?, email = ?, position = ?, section = ?
-                                    where employee_no = ?', [$info2[$x]["physicaldeliveryofficename"][0], $info2[$x]["givenname"][0],
-                                    $info2[$x]["sn"][0], $email, $position, $section, $info2[$x]["physicaldeliveryofficename"][0]]);
-                    }          
+                    echo $info[$i]["physicaldeliveryofficename"][0]." ".$section." ".$email." ".$position.$info[$i]["sn"][0]."<br>";            
                 }
             }
         }
@@ -216,6 +221,96 @@ class RequestController extends Controller
         $signature = DB::select('select signature from ad_profile where employee_no = ?', [Cookie::get('employee_no')]);
 
         return $signature;
+    }
+
+    function testldap(){
+        $username   = 'administrator';
+        $password   = '2zx*9P02';
+
+        $ldap_connection = ldap_connect($this->server, $this->port);
+
+        if (! $ldap_connection)
+        {
+            echo '<p>LDAP SERVER CONNECTION FAILED</p>';
+            exit;
+        }
+
+        // Help talking to AD
+        ldap_set_option($ldap_connection, LDAP_OPT_PROTOCOL_VERSION, 3);
+        ldap_set_option($ldap_connection, LDAP_OPT_REFERRALS, 0);
+
+        $ldap_bind = @ldap_bind($ldap_connection, $username.$this->domain, $password);
+
+        if (! $ldap_bind)
+        {
+            echo '<p>LDAP BINDING FAILED</p>';
+            exit;
+        }
+        else{
+            $filter="(&(objectClass=user)(objectCategory=person)(physicaldeliveryofficename=*))";
+            $result = ldap_search($ldap_connection,"OU=M365,OU=NISDT-Users,dc=nisdt,dc=net", $filter);
+            $info = ldap_get_entries($ldap_connection, $result);
+            $employee_no = array();
+
+            $count = 0;
+
+            for ($i=0; $i<$info["count"]; $i++){
+                $employee_no[] = $info[$i]['physicaldeliveryofficename'][0];
+            }
+
+            for ($i=0; $i<count($employee_no);$i++){
+                if(strlen($employee_no[$i]) == 5){
+                    $filter2="(physicaldeliveryofficename=$employee_no[$i])";
+                    $result2 = ldap_search($ldap_connection,"OU=M365,OU=NISDT-Users,dc=nisdt,dc=net",$filter2);
+                    $info2 = ldap_get_entries($ldap_connection, $result2);
+
+                    $count++;
+    
+                    for ($x=0; $x<$info2["count"]; $x++){
+    
+                        if(isset($info2[$x]["company"][0])){
+                            $section = $this->getSectionId($info2[$x]["company"][0]);
+                        }
+
+                        if(isset($info2[$x]["title"][0])){
+                            $position = $info2[$x]["title"][0];
+                        }
+                        else{
+                            $position = "";
+                        }
+    
+                        if(isset($info2[$x]["mail"][0])){
+                            $email = $info2[$x]["mail"][0];
+                        }
+                        else{
+                            $email = "";
+                        }
+    
+                        /*$employee = DB::select('select employee_no from ad_profile where employee_no = ?', [$info2[$x]["physicaldeliveryofficename"][0]]);
+    
+                        if(empty($employee)){
+                            DB::insert('insert into ad_profile (employee_no, name, surname, email, position, section) values (?, ?, ?, ?, ?, ?)', 
+                                        [$info2[$x]["physicaldeliveryofficename"][0], $info2[$x]["givenname"][0], $info2[$x]["sn"][0], $email,
+                                        $position, $section]);
+                        }
+                        else{
+                            DB::update('update ad_profile set employee_no = ?, name = ?, surname = ?, email = ?, position = ?, section = ?
+                                        where employee_no = ?', [$info2[$x]["physicaldeliveryofficename"][0], $info2[$x]["givenname"][0],
+                                        $info2[$x]["sn"][0], $email, $position, $section, $info2[$x]["physicaldeliveryofficename"][0]]);
+                        }*/       
+                    }
+                    echo $info[$i]["physicaldeliveryofficename"][0]." ".$section." ".$email." ".$position.$info[$i]["sn"][0]."<br>";
+
+                    //var_dump($info2);
+            
+                }
+            }
+
+            echo $count;
+
+        }
+
+        ldap_close($ldap_connection);
     }
 
 }

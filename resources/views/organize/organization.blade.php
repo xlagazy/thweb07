@@ -108,7 +108,7 @@
                         @if($members->sub_it_id == 1 && $members->position_name == "Chief")
                         <div class="carduser">
 
-                            @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                            @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                 <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                             @else
                                 <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
@@ -146,7 +146,7 @@
                         @if($members->sub_it_id == 1 && $members->position_name != "Manager" && $members->position_name != "Chief")
                         <div class="carduser">
 
-                            @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                            @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                 <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                             @else
                                 <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
@@ -194,7 +194,7 @@
                         @if($members->sub_it_id == 2 && $members->position_name == "Chief")
                             <div class="carduser">
 
-                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                                 @else
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
@@ -232,7 +232,7 @@
                         @if($members->sub_it_id == 2 && $members->position_name != "Manager" && $members->position_name != "Chief")
                         <div class="carduser">
 
-                            @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                            @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                 <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                             @else
                                 <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
@@ -280,7 +280,7 @@
                         @if($members->sub_it_id == 3 && $members->position_name == "Chief")
                             <div class="carduser">
 
-                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                                 @else
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
@@ -318,7 +318,7 @@
                             @if($members->sub_it_id == 3 && $members->position_name != "Manager" && $members->position_name != "Chief")
                             <div class="carduser">
 
-                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                                 @else
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
@@ -364,7 +364,7 @@
                         @if($members->sub_it_id == 4 && $members->position_name == "Chief")
                             <div class="carduser">
 
-                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                                 @else
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >
@@ -402,7 +402,7 @@
                             @if($members->sub_it_id == 4 && $members->position_name != "Manager" && $members->position_name != "Chief")
                             <div class="carduser">
 
-                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6)
+                                @if($members->status != 1 && $members->status != 4 && $members->status != 5 && $members->status != 6 && $members->status != 11)
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px red;" >
                                 @else
                                     <img src="images/{{$members->image}}" class="rounded" style="width:70px;height:100px; box-shadow: 0 0 4px 4px #1FFA09;" >

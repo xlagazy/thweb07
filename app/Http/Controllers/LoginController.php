@@ -55,7 +55,6 @@ class LoginController extends Controller
               DB::connection('mysql2')->insert('insert into log_login (name, ip, status) value(?, ?, "login")', [$name, $ip]);
 
               return redirect()->action([UserController::class, 'home']);
-
             } 
 
           }

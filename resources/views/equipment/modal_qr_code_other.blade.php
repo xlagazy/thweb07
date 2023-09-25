@@ -1,5 +1,5 @@
 <div class="modal fade" id="qrcodeother{{$equipments->ot_equipment_no}}" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 6cm;">
+    <div class="modal-dialog" role="document" style="max-width: 6cm;">
         <div class="modal-content">
 
             <div class="modal-body">

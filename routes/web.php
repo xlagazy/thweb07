@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SignatureController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\QueryController;
 
 //show
     Route::get('/show', function () { 
@@ -21,6 +22,9 @@ Route::get('/errorie', function(){
     return view('error_ie');
 });
 //
+
+//as400 query
+Route::get('/query', [QueryController::class, 'queryData']);
 
 //test
 Route::get('/test', [Controller::class, 'test']);
@@ -103,3 +107,11 @@ include "route_request.php";
 //request user
 
 include "route_request_user.php";
+
+//request user
+
+include "route_request_admin.php";
+
+//planet press
+
+include "route_planetpress.php";

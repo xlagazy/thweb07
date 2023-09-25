@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-dompdf": "^2.0",
         "dbt/odbc-driver": "^0.4.0",
         "fideloper/proxy": "^4.4",
         "firebase/php-jwt": "^5.4",
@@ -15,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "maatwebsite/excel": "^3.1",
+        "nelisys/laravel-dompdf-thai-font": "^0.1.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "twbs/bootstrap-icons": "^1.6"
     },

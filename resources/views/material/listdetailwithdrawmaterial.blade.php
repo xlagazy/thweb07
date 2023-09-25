@@ -57,7 +57,7 @@
             @foreach($withdrawmaterial as $key => $withdrawmaterials)
 
                <tr id="$key">
-                  <td style="text-align:center;">{{$key+1}}</td>
+                  <td style="text-align:center;">{{$withdrawmaterial->firstItem() + $key}}</td>
                   <td data-toggle="modal" data-target="#detail">{{$withdrawmaterials->material_name}}</td>
                   <td style="text-align:center;">{{$withdrawmaterials->withdraw_material_qty}}</td>
                   <td style="text-align:center;">{{date("d-M-Y", strtotime($withdrawmaterials->input_date))}}</td>

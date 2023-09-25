@@ -45,6 +45,76 @@ class Controller extends BaseController
 
     }
 
+    public static function getNameAD($id){
+
+        $data = DB::select('select name from ad_profile where employee_no = ?', [$id]);
+
+        if(empty($data)){
+            $name = "";
+        }
+        else{
+            $name = $data[0]->name;
+        }
+        return $name;
+
+    }
+
+    public static function getprefix($id){
+
+        $data = DB::select('select prefix_name from prefix where prefix_id = ?', [$id]);
+
+        if(empty($data)){
+            $prefix_name = "";
+        }
+        else{
+            $prefix_name = $data[0]->prefix_name;
+        }
+        return $prefix_name;
+
+    }
+
+    public static function getSection($id){
+
+        $data = DB::select('select sect_name from section where sect_id = ?', [$id]);
+
+        if(empty($data)){
+            $sect_name = "";
+        }
+        else{
+            $sect_name = $data[0]->sect_name;
+        }
+        return $sect_name;
+
+    }
+
+    public static function getSignature($id){
+
+        $data = DB::select('select signature from ad_profile where employee_no = ?', [$id]);
+
+        if(empty($data)){
+            $signature = "";
+        }
+        else{
+            $signature = $data[0]->signature;
+        }
+        return $signature;
+
+    }
+
+    public static function getSignaturemember($id){
+
+        $data = DB::select('select signature from member where user_id = ?', [$id]);
+
+        if(empty($data)){
+            $signaturemember = "";
+        }
+        else{
+            $signaturemember = $data[0]->signature;
+        }
+        return $signaturemember;
+
+    }
+
     public static function getStamp($id){
 
         $data = DB::select('select stamp from member where user_id = ?', [$id]);
@@ -74,7 +144,7 @@ class Controller extends BaseController
 
         //////////////////////////////////////////////////////////////////////////////////////////////
 
-        $user="ODBCWEB";
+        /*$user="ODBCWEB";
         $password="ODBCWEB";
             
         //storing connection id in $conn
@@ -94,7 +164,14 @@ class Controller extends BaseController
             echo json_encode($data);
         }
         //Resource releasing
-        odbc_close($conn);
+        odbc_close($conn);*/
+
+        $url = 'http://10.230.1.70:10116/web/services/SQL';
+
+        $response = file_get_contents($url);
+        $data = json_decode($response);
+        
+        echo json_encode($data->SQL_Syssts_R[0]);
     }
     
     function testftp(){

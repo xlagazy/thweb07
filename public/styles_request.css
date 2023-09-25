@@ -7,8 +7,9 @@
 }
 
 .head-text{
-    font-size:18px;
-    margin:0 0 0 5%;
+  color:#0070f3;
+  font-size:18px;
+  margin:0 0 0 5%;
 }
 
 .contents{
@@ -33,14 +34,14 @@
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 16px;
-    color: #000;
+    color: #0070f3;
     display: block;
     transition: 0.3s;
 }
 
 .sidenav a:hover, .dropdown-btn:hover {
-    color: #000;
-    background-color: #00000050;
+    color: #0070f3;
+    background-color: #0070f350;
     text-decoration: none;;
 }
 
@@ -53,11 +54,11 @@
 }
 
 .sidenav .clsnav:hover{
-    background-color: #00000050;
+    background-color: #0070f350;
 }
 
 .active {
-    background-color: #00000050;
+    background-color: #0070f350;
 }
 
 .dropdown-container {
@@ -286,12 +287,19 @@
 
 .loginbtn{
   color:#fff;
+  border: none;
   background-color: Transparent;
 }
 
 .loginbtn:hover{
   color:#ffffff80;
   background-color: Transparent;
+}
+
+.btnmenu{
+  color:#fff;
+  border: none;
+  background-color: #0070f3;
 }
 
 .btnmenu:hover{
@@ -391,5 +399,3 @@
 #hidden_delete{
   display: none;
 }
-
-  

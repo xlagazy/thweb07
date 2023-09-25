@@ -104,9 +104,9 @@ class CheckListController extends Controller
         //insert checklist everyday 
         foreach($member as $members){
             DB::insert('insert into checklist (user_id, status, temperature, check_date) 
-                        values(?, 1, null, ?) ', [$members->user_id, date("Y-m-d")]);
+            values(?, 1, null, ?) ', [$members->user_id, date("Y-m-d")]);
         }
-
+        
         //insert log run schedule
         DB::connection('mysql2')->insert('insert into log_schedule (schedule) values ("checklisteveryday")');
 

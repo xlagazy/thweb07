@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
 use App\Exports\BorrowExport;
-use Excel;
 use DB;
 use DateTime;
+use Excel;
 
 class BorrowController extends Controller
 {

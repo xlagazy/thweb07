@@ -30,24 +30,14 @@
 
         <p class="head-text">Request</p>
 
-        <div class="dropdown-btn">Request Application
+        <div class="dropdown-btn">Request Admin
             <i class="fa fa-caret-down"></i>
         </div>
 
         <div class="dropdown-container">
-            <a href="/listrequestapp/user" >List request application</a>
-            <a href="/testcont" >test 1</a>
-            <a href="/testcont" >test 1</a>
-        </div>
-
-        <div class="dropdown-btn">Request Developer
-            <i class="fa fa-caret-down"></i>
-        </div>
-
-        <div class="dropdown-container">
-            <a href="/testcont" >test 1</a>
-            <a href="/testcont" >test 1</a>
-            <a href="/testcont" >test 1</a>
+            <!-- <a href="/listrequestapp/user" >Request application</a> -->
+            <a href="/listrequestuser" >Request Users</a>
+            <a href="/listrequestadmin" >Request Admin</a>
         </div>
 
     </div>
@@ -55,7 +45,7 @@
     @include('request_system.profile_request')
 
     <div id="contents">
-        <div class="navbar navbar-light" style="color:#fff; margin-bottom:20px; background-color: rgb(0, 0, 0);position:top;">
+        <div class="navbar navbar-light" style="color:#fff; margin-bottom:20px; background-color: #0070f3;position:top;">
             <span  style="font-size:25px;"><button id="togglebuttonrequest" class="btnmenu">&#9776;</button> Request IT</span>
             <div>
                 @if(empty(Cookie::get('name')))

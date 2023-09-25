@@ -10,11 +10,11 @@
 </div>
 
 <script>
-        var URLs = ["http://thweb07/network-monitor", "http://thweb07/organization"];
+        var URLs = ["http://thweb07/organization"];
         var currURL = 0;
 
         function cycle() {
-            currURL = (currURL + 1) % 2;
+            currURL = (currURL + 1) % 1;
             document.getElementById("ifr").src = URLs[currURL];
             setTimeout(cycle, 30000);
         }

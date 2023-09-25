@@ -11,7 +11,7 @@ $(document).ready(function(){
         const time_type = document.getElementById("time_type");
         const time_type2 = document.getElementById("time_type2");
         const time_type3 = document.getElementById("time_type3");
-        const request_user_no = document.getElementById("request_user_no");
+        const no = document.getElementById("no");
         const hd_status_request = document.getElementById("hd_status_request");
         
         var currentRow=$(this).closest("tr");
@@ -24,7 +24,7 @@ $(document).ready(function(){
         var dt_work_detail = currentRow.find("td:eq(5)").html();
         var dt_yearly_no = currentRow.find("td:eq(6)").html();
         var dt_time_type = currentRow.find("td:eq(7)").html();
-        var dt_request_user_no = currentRow.find("td:eq(9)").html();
+        var dt_no = currentRow.find("td:eq(8)").html();
 
         end_date.value = dt_end_date;  
         program_install_date.value = dt_program_install_date;   
@@ -32,7 +32,7 @@ $(document).ready(function(){
         end_detail.value = dt_end_detail;   
         work_detail.value = dt_work_detail; 
         yearly_no.value = dt_yearly_no;
-        request_user_no.value = dt_request_user_no;
+        no.value = dt_no;
         hd_status_request.value = dt_status_request_user;
 
         if(dt_time_type == 0){
@@ -45,14 +45,14 @@ $(document).ready(function(){
           time_type3.checked = true;
         }
 
-        if(dt_status_request_user <= 2){
+        if(dt_status_request_user <= 3){
           document.getElementById('0').selected = true;
 
           $('#hidden_finished').hide();
           $('#hidden_working').hide();
         }
-        if(dt_status_request_user == 3){
-          document.getElementById('3').selected = true;
+        if(dt_status_request_user == 4){
+          document.getElementById('4').selected = true;
 
           $('#hidden_finished').hide();
           $('#hidden_working').show();
@@ -64,8 +64,8 @@ $(document).ready(function(){
           time.required = false;
           end_detail.required = false;
         }
-        if(dt_status_request_user == 4){
-          document.getElementById('4').selected = true;
+        if(dt_status_request_user == 5){
+          document.getElementById('5').selected = true;
 
           $('#hidden_finished').show();
           $('#hidden_working').hide();
@@ -94,8 +94,8 @@ $(".frm").on("click",".updaterequestuser",function(e){
     }
     else{
        Swal.fire({
-         title: 'ร้องขอ',
-         text: "คุณต้องการร้องขอสิทธิ์ผู้ใช้งานใช่หรือไม่่",
+         title: 'จบงาน',
+         text: "คุณต้องการจบงานใช่หรือไม่่",
          icon: 'warning',
          showCancelButton: true,
          confirmButtonColor: '#3085d6',
@@ -105,7 +105,7 @@ $(".frm").on("click",".updaterequestuser",function(e){
        }).then((result) => {
          if (result.isConfirmed) {
            Swal.fire(
-             'ร้องขอสิืทธิ์ผู้ใช้งานเรียบร้อย',    
+             'จบงานเรียบร้อย',    
              '',
              'success'
            ).then((result)=> {
@@ -134,14 +134,14 @@ function checkStatus(){
         $('#hidden_finished').hide();
         $('#hidden_working').hide();
     }
-    if(status_request_user.value == 3){
-        if(hd_status_request == 4){
+    if(status_request_user.value == 4){
+        if(hd_status_request == 5){
           Swal.fire(
             'Warning!',
             'คุณจบงานไปเรียบร้อยแล้ว',
             'warning'
           )
-          status_request_user.value = 4;
+          status_request_user.value = 5;
           $('#hidden_finished').show();
           $('#hidden_working').hide();
         }
@@ -156,8 +156,8 @@ function checkStatus(){
           end_detail.required = false;
         }
     }
-    if(status_request_user.value == 4){
-        if(hd_status_request == 2){
+    if(status_request_user.value == 5){
+        if(hd_status_request == 3){
             Swal.fire(
                 'Warning!',
                 'กรุณาดำเนินการก่อนที่จะจบงาน',
@@ -167,7 +167,7 @@ function checkStatus(){
             $('#hidden_finished').hide();
             $('#hidden_working').hide();
         }
-        if(hd_status_request == 3){
+        if(hd_status_request == 4){
             $('#hidden_finished').show();
             $('#hidden_working').hide();
 

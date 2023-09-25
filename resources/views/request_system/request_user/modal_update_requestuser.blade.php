@@ -11,7 +11,7 @@
         <div class="modal-body" style="color:#000;">
             <form action="/listrequestuser/receieved/update" method="post" enctype="multipart/form-data" class="frm">
                 <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>" >
-                <input type = "hidden" name = "request_user_no" id = "request_user_no">
+                <input type = "hidden" name = "no" id = "no">
                 <input type = "hidden" name = "hd_status_request" id = "hd_status_request">
                 <div class="form-group row">
                     <div class="col-4">
@@ -20,8 +20,8 @@
                     <div class="col">
                         <select name="status_request_user" id="status_request_user" class="form-control statusrequest" onchange="checkStatus()" required>
                             <option id="0" selected value>Choose...</option>
-                            <option id="3" value="3">กำลังดำเนินการ</option>
-                            <option id="4" value="4">ดำเนินการแล้ว</option>
+                            <option id="4" value="4">กำลังดำเนินการ</option>
+                            <option id="5" value="5">ดำเนินการแล้ว</option>
                         </select>
                         <div class="invalid-feedback">Please choose data</div>
                     </div>

@@ -17,13 +17,13 @@ class MaterialController extends Controller
         isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
 
         $material = DB::table('material')
-            ->join('member', 'member.user_id', '=', 'material.user_id')
-            ->select('material.material_no',
-                     'material.material_name',
-                     'material.image',
-                     'material.input_date')
-            ->orderBy('material.no', 'DESC')
-            ->paginate(10);
+                            ->join('member', 'member.user_id', '=', 'material.user_id')
+                            ->select('material.material_no',
+                                    'material.material_name',
+                                    'material.image',
+                                    'material.input_date')
+                            ->orderBy('material.no', 'DESC')
+                            ->paginate(10);
 
         return view('material.listmaterial', ['material' => $material, 'search_material_number' => $search_material_number,
                     'search_material_name' => $search_material_name]);
@@ -35,15 +35,15 @@ class MaterialController extends Controller
         isset($_GET['search_material_name']) ? $search_material_name = $_GET['search_material_name'] : $search_material_name = "";
 
         $material = DB::table('material')
-            ->join('member', 'member.user_id', '=', 'material.user_id')
-            ->select('material.material_no',
-                     'material.material_name',
-                     'material.image',
-                     'material.input_date')
-            ->where('material.material_no', 'LIKE', '%'.$search_material_number.'%')
-            ->where('material.material_name', 'LIKE', '%'.$search_material_name.'%')
-            ->orderBy('material.no', 'DESC')
-            ->paginate(10);
+                            ->join('member', 'member.user_id', '=', 'material.user_id')
+                            ->select('material.material_no',
+                                    'material.material_name',
+                                    'material.image',
+                                    'material.input_date')
+                            ->where('material.material_no', 'LIKE', '%'.$search_material_number.'%')
+                            ->where('material.material_name', 'LIKE', '%'.$search_material_name.'%')
+                            ->orderBy('material.no', 'DESC')
+                            ->paginate(10);
 
         return view('material.listmaterial', ['material' => $material, 'search_material_number' => $search_material_number,
                     'search_material_name' => $search_material_name]);

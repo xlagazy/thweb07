@@ -50,7 +50,9 @@
           </div>
           <div class="dropdown-container">
             <a href="{{URL::to('/organization')}}" target="_blank">ตาราง Organize</a>
-            <a href="{{URL::to('/checklist')}}">เช็คเวลาทำงาน</a>
+            @if(session()->get('user_id') == "15")
+              <a href="{{URL::to('/checklist')}}">เช็คเวลาทำงาน</a>
+            @endif
             <a href="{{URL::to('showeditchecklist')}}">แก้ไขเช็คเวลาทำงาน</a>
           </div>
       
@@ -58,9 +60,18 @@
             <i class="fa fa-caret-down"></i>
           </div>
           <div class="dropdown-container">
-            <a href="{{URL::to('/listnotifyrepair')}}">รายการแจ้งซ่อม </a>
-            <a href="{{URL::to('/recievenotifyrepair')}}">งานที่รับ</a>
+           <!-- <a href="{{URL::to('/listnotifyrepair')}}">รายการแจ้งซ่อม </a>
+            <a href="{{URL::to('/recievenotifyrepair')}}">งานที่รับ</a> -->
             <a href="{{URL::to('/listrequestuser/it')}}">Request User</a>
+            <a href="{{URL::to('/listrequestadmin/it')}}">Request Admin</a>
+          </div>
+
+          <div class="dropdown-btn">Planet Press
+              <i class="fa fa-caret-down"></i>
+          </div>
+          <div class="dropdown-container">
+            <a href="{{URL::to('/listplanetpressthai')}}">Printer Planet Press <label class="text-danger">(THAI)</label></a>
+            <a href="{{URL::to('/listplanetpress')}}">Printer Planet Press (DEV)</a>
           </div>
 
           @if(session()->get('type_user') == 1 || session()->get('sub') == 3 || session()->get('sub') == 4)

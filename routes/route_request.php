@@ -23,4 +23,6 @@ Route::get('/listrequestapp/user', [RequestAppController::class, 'listRequestApp
 
 Route::get('/listrequestapp/approvechiefuser/{id}/{employee_no}', [RequestAppController::class, 'addApproveChiefUser']);
 
+Route::get('/testldap', [RequestController::class, 'testldap']);
+
 ?>

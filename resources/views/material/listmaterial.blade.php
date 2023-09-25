@@ -56,7 +56,7 @@
                @foreach($material as $key => $materials)
 
                   <tr id="$key">
-                     <td style="text-align:center;">{{$key+1}}</td>
+                     <td style="text-align:center;">{{$material->firstItem() + $key}}</td>
                      <td data-toggle="modal" data-target="#detail">{{$materials->material_no}}</td>
                      <td>{{$materials->material_name}}</td>
                      <td>
